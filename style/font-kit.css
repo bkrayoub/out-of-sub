@@ -1,0 +1,14 @@
+@font-face {
+    font-family: coffeCake;
+    src: url("../fonts/CoffeCake.ttf");
+}
+
+@font-face { 
+    font-family: glossyShine;
+    src: url("../fonts/Glossy Sheen Shine DEMO.ttf");
+}
+
+@font-face {
+    font-family: glossyRegular;
+    src: url("../fonts/Glossy Sheen Regular DEMO.ttf");
+}
