@@ -46,9 +46,9 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
     position: relative;
     font-size: 25px;
 }
@@ -67,8 +67,8 @@ body{
 .news {
     margin-top: 20px;
     border-radius: 40px;
-    border: #6b307a solid;
-    width: 300px;
+    border: #f1baff solid;
+    width: 270px;
     height: 170px;
     background-color: #E9C3FF;
     display: flex;
