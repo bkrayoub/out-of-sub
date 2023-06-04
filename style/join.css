@@ -10,6 +10,7 @@ body{
 * {
     font-family: glossyRegular;
     outline: none;
+ 
 }
 .container {
     border: 5px solid #f8dcff;
@@ -40,7 +41,7 @@ body{
 .botona a {
     width: 300px;
     height: 80px;
-    background-image: url(../media/login.png);
+    background-image: url(../media/join.png);
     background-size: cover;
     position: absolute;
     animation-name: botona-animate;
@@ -63,6 +64,9 @@ form {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+}
+form>input::placeholder {
+    text-align: center;
 }
 form>input {
     margin: 20px 0px;
