@@ -1,0 +1,91 @@
+body{
+    padding: 0px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../media/bgbg.png);
+
+}
+* {
+    font-family: glossyRegular;
+    outline: none;
+ 
+}
+.container {
+    border: 5px solid #f8dcff;
+    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    border-radius: 20px;
+    background-image: url(../media/bgg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 1216px;
+    height: 684px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.botona {
+    cursor: pointer;
+    width: 300px;
+    height: 80px;
+    border-radius: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.botona a {
+    width: 300px;
+    height: 80px;
+    background-image: url(../media/join.png);
+    background-size: cover;
+    position: absolute;
+    animation-name: botona-animate;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transition: .33s;
+    border-radius: 100px;
+    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+}
+.botona a:hover { 
+    box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
+}
+form {
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+form>input::placeholder {
+    text-align: center;
+}
+form>input {
+    margin: 20px 0px;
+    width: 500px;
+    height: 65px;
+    border-radius: 100px;
+    border: 5px solid #A829BD;
+    font-size: 30px;
+    padding: 0px 50px;
+}
+.container>h1 {
+    color: white;
+    font-size: 42px;
+    letter-spacing: 1mm;
+}
+.container>p {
+    font-size: 25px;
+} 
+.container>p>span>a {
+    text-decoration: none;
+    color: #FFBB4A;
+}

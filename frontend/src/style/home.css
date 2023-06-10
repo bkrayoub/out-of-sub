@@ -1,0 +1,86 @@
+
+/* -------------------------------------------------- */
+body{
+    overflow: hidden;
+    padding: 0px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../media/bgbg.png");
+
+}
+.container {
+    border: 5px solid #f8dcff;
+    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    border-radius: 20px;
+    background-image: url("../media/bg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 1216px;
+    height: 684px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.container>img {
+    width: 800px;
+}
+.botona {
+    cursor: pointer;
+    width: 700px;
+    height: 180px;
+    border-radius: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+.botona a {
+    margin: 0px 20px;
+}
+.botona #login {
+    width: 300px;
+    height: 80px;
+    background-image: url("../media/botona.png");
+    background-size: cover;
+    animation-name: botona-animate;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transition: .33s;
+    border-radius: 100px;
+    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+}
+.botona #login:hover {
+    
+    box-shadow: 0px 0px 36px -7px rgba(226, 226, 226, 0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 255, 255, 0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255, 255, 255, 0.8);
+}
+
+.botona #guest {
+    width: 300px;
+    height: 80px;
+    background-image: url("../media/guest.png");
+    background-size: cover;
+    animation-name: botona-animate;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    transition: .33s;
+    border-radius: 100px;
+    box-shadow: 0px 0px 36px -7px rgba(156, 156, 156, 0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(175, 175, 175, 0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(231, 231, 231, 0.8);
+}
+.botona #guest:hover {
+    
+    box-shadow: 0px 0px 36px -7px rgba(226, 226, 226, 0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 255, 255, 0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255, 255, 255, 0.8);
+}
+
