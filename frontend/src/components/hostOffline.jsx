@@ -6,7 +6,7 @@ import startImage from '../image/start.png';
 export default function HostOffline() {
 var players = [1,2,3,4,5,6,7,8,9,10]
   return (
-    <div class="container">
+    <div class="container_ho">
         <div class="left">
             <table>
                 {players.map((player) => (

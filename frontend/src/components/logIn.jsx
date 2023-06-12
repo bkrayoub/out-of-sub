@@ -10,7 +10,7 @@ export default function LogIn() {
                 <input type="text" />
                 <input type="password" />
             </form>
-            <p>You don’t have an account?<span><Link to="signUp">create one</Link></span></p>
+            <p>You don’t have an account?<span><Link to="/signUp">create one</Link></span></p>
             <div class="botona">
                 <a href="./pages/lobby.html"></a>
             </div>

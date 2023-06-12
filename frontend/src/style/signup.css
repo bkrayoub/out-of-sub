@@ -12,7 +12,7 @@ body{
     font-family: glossyRegular;
     outline: none;
 }
-.container {
+.container_su {
     border: 5px solid #f8dcff;
     box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
@@ -27,7 +27,7 @@ body{
     align-items: center;
     justify-content: center;
 }
-.container h3 {
+.container_su h3 {
     color: white;
     font-size: 25px;
     padding: 10px 20px;
