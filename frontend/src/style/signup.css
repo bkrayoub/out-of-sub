@@ -5,7 +5,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url(../media/bgbg.png);
+    background-image: url(../image/bgbg.png);
 
 }
 * {
@@ -18,7 +18,7 @@ body{
     -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     border-radius: 20px;
-    background-image: url(../media/bgg.png);
+    background-image: url(../image/bgg.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 1216px;
@@ -47,7 +47,7 @@ body{
 .botona a {
     width: 300px;
     height: 80px;
-    background-image: url(../media/create.png);
+    background-image: url(../image/create.png);
     background-size: cover;
     position: absolute;
     animation-name: botona-animate;

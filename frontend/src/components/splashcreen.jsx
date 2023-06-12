@@ -1,15 +1,17 @@
 import React from 'react';
 import '../style/home.css';
+import logoImage from '../image/logo.png'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 function Splashcreen(props) {
 
     return (
         <>
-            <div class="container">
-                <img src="./media/logo.png" />
+            <div className="container1">
+                <img src={logoImage}/>
                 <div class="botona">
-                    <a href="./pages/login.html" id="login"></a>
-                    <a href="./pages/lobby.html" id="guest"></a>
+                    <Link id="login" to="/lobby"></Link>
+                    <Link id="guest" to="/lobby"></Link>
                 </div>
             </div>
         </>

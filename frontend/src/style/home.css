@@ -7,16 +7,16 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("../media/bgbg.png");
+    background-image: url(../image/bgbg.png);
 
 }
-.container {
+.container1 {
     border: 5px solid #f8dcff;
     box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     border-radius: 20px;
-    background-image: url("../media/bg.png");
+    background-image: url(../image/bg.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 1216px;
@@ -26,9 +26,10 @@ body{
     align-items: center;
     justify-content: center;
 }
-.container>img {
+.container1>img {
     width: 800px;
 }
+
 .botona {
     cursor: pointer;
     width: 700px;
@@ -39,13 +40,13 @@ body{
     align-items: center;
     justify-content: center;    
 }
-.botona a {
+.botona a{
     margin: 0px 20px;
 }
 .botona #login {
     width: 300px;
     height: 80px;
-    background-image: url("../media/botona.png");
+    background-image: url(../image/botona.png);
     background-size: cover;
     animation-name: botona-animate;
     animation-duration: 3s;
@@ -66,7 +67,7 @@ body{
 .botona #guest {
     width: 300px;
     height: 80px;
-    background-image: url("../media/guest.png");
+    background-image: url(../image/guest.png);
     background-size: cover;
     animation-name: botona-animate;
     animation-duration: 3s;

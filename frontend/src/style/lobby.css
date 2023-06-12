@@ -5,16 +5,19 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url(../media/bgbg.png);
+    background-image: url(../image/bgbg.png);
 }
-.container {
+#test {
+    font-size: 200px;
+}
+.containera {
     overflow: hidden;
     border: 5px solid #f8dcff;
     box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     border-radius: 20px;
-    background-image: url(../media/bgg.png);
+    background-image: url(../image/bgg.png);
     background-size: cover;
     background-repeat: no-repeat;
     width: 1216px;
@@ -40,10 +43,21 @@ body{
     display: flex;
     flex-direction: column;
 }
-.left>div a {
+.center {
+    transition: .3s;
+    margin: 0px 0px;
+}
+.left>div a{
     color: white;
     text-decoration: none;
-    font-size: 50px;
+    font-size: 40px;
+    margin: 0;
+}
+#list p {
+    cursor: pointer;
+    margin: 0px;
+    font-size: 40px;
+
 }
 /*  */
 #pfp-card {
@@ -51,7 +65,7 @@ body{
     width: 300px;
     height: 200px;
     /* background-color: #f8dcff; */
-    background-image: url(../media/pfp-card.png);
+    background-image: url(../image/pfp-card.png);
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
@@ -59,7 +73,7 @@ body{
     justify-content: center;
     align-items: center;
     position: relative;
-    font-size: 25px;
+    font-size: 20px;
 }
 .right p {
     margin: 0px;
@@ -83,7 +97,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 20px;
 }
 #level-line {
     margin-top: 5px;
@@ -114,7 +128,6 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    display: none;
 }
 .onlineSection>img {
     width: 500px;
@@ -132,7 +145,7 @@ body{
     width: 270px;
     height: 370px;
     display: flex;
-    background-image: url(../media/online-card.png);
+    background-image: url(../image/online-card.png);
     background-size: contain;
     background-repeat: no-repeat;
     flex-direction: column;
