@@ -9,7 +9,7 @@ function Splashcreen(props) {
         <>
             <div className="container1">
                 <img src={logoImage}/>
-                <div class="botona1">
+                <div className="botona1">
                     <Link id="login" to="/login"></Link>
                     <Link id="guest" to="/lobby"></Link>
                 </div>
