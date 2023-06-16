@@ -3,36 +3,51 @@ import '../style/signup.css';
 
 export default function SignUp() {
 
-  const [username, setUserName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confermPass, setconfermPass] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch('/api/create', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, email, password }),
-    });
-
-    const data = await response.json();
-
-    console.log(data);
+    if(confermPass === password){
+      const response = await fetch('http://127.0.0.1:8000/api/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+  
+      const data = await response.json();
+  
+      console.log(data);
+      alert("Welcome "+name+" you successfully have registered!");
+      setName('')
+      setEmail('')
+      setPassword('')
+      setconfermPass('')
+      window.location.href = '/login';
+    }
+    else{
+      alert("passwords don't match");
+    }
   };
 
 
   return (
     <>
       <div className="container_su">
-        <form onSubmit={handleSubmit}>
+
+      <form onSubmit={handleSubmit} className="signupForm">
+
+<div className='left' >
           <h3>username</h3>
             <input 
             type="text"
-            value={username}
-            onChange={(e) => setUserName(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             />
             
             <h3>email</h3>
@@ -52,10 +67,11 @@ export default function SignUp() {
             <h3>conferm password</h3>
             <input 
             type="password"
+            value={confermPass}
+            onChange={(e) => setconfermPass(e.target.value)}
             />
-            <button type='submit'>click</button> 
 
-        </form>
+        </div>
 
 
 
@@ -63,9 +79,15 @@ export default function SignUp() {
             <h1>create your account and play with friends</h1>
 
             <div className="botona">
-                <button type='submit'></button> 
+                <button type='submit' ></button> 
             </div>
         </div>
+
+
+
+      </form>
+
+        
       </div>
     </>
   )

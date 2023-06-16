@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\PlayerController;
-use GuzzleHttp\Promise\Create;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/index', [PlayerController::class , 'index']);
-Route::post('/register', [PlayerController::class , 'register'])->name('register');
-Route::post('/create', 'PlayerController@create');
+Route::get('test', 'App\Http\Controllers\UserController@test');
+
+Route::post('register', 'App\Http\Controllers\UserController@register');
+
+Route::post('login', 'App\Http\Controllers\UserController@login');
