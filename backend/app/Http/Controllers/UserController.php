@@ -48,44 +48,38 @@ class UserController extends Controller
 
 
 
-
-    public function login(Request $request)
+    public function update(Request $request, $id)
     {
-        $credentials = $request->only('email', 'password');
+        // Retrieve the item from the database
+        $item = User::find($id);
 
-        if (Auth::attempt($credentials)) {
-            // Authentication passed
-            $request->session()->regenerate();
-
-            $user = Auth::user();
-            $request->session()->put('user_id', $user->id);
-
-            return response()->json(['message' => 'Authenticated']);
+        if (!$item) {
+            return response()->json(['message' => 'Item not found'], 404);
         }
 
-        return response()->json(['message' => 'Invalid credentials'], 401);
-    }
+        // Validate the request data
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            // Add validation rules for other fields
+        ]);
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return response()->json(['message' => 'Logged out']);
-    }
-
-    public function getUser(Request $request)
-    {
-        $userId = $request->session()->get('user_id');
-
-        if ($userId) {
-            // Retrieve the user data based on the ID
-            $user = // Retrieve user data from the database or any other source
-
-            return response()->json($user);
+        if ($validator->fails()) {
+            return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()], 422);
         }
 
-        return response()->json(['message' => 'User not logged in'], 401);
+        // Update the item with the new data
+        $item->name = $request->input('name');
+        $item->email = $request->input('email');
+        $item->password = $request->input('password');
+        // Add other fields as needed
+
+        // Save the updated item
+        $item->save();
+
+        return response()->json(['message' => 'Item updated successfully']);
     }
+
+
 }

@@ -3,6 +3,7 @@ import Splashcreen from "./components/splashcreen";
 import HostOffline from "./components/hostOffline";
 import SignUp from "./components/signUp";
 import LogIn from "./components/logIn";
+import EditAcc from "./components/editAccount";
 
 
 import React, { useState } from 'react';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/hostOffline" element={<HostOffline/>} />
           <Route path="/logIn" element={<LogIn/>} />
           <Route path="/signUp" element={<SignUp/>} />
+          <Route path="/editAcc" element={<EditAcc/>} />
         </Routes>
       </div>
     </Router>

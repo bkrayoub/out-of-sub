@@ -23,3 +23,5 @@ Route::get('test', 'App\Http\Controllers\UserController@test');
 Route::post('register', 'App\Http\Controllers\UserController@register');
 
 Route::post('login', 'App\Http\Controllers\UserController@login');
+
+Route::put('/update/{id}', 'App\Http\Controllers\UserController@update');
