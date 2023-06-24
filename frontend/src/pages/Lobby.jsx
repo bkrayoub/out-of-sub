@@ -3,15 +3,23 @@ import { useState } from "react";
 import '../style/lobby.css';
 import logoImage from '../image/logo.png'
 import pfp_demo from '../image/pfp-demo.png'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
+import {useStateContext} from '../contexts/ContextProvider.jsx'
 
 export default function Lobby() {
+    const { token, user } = useStateContext() 
+    
     const [centerWidth, setCenterWidth] = useState('0px')
     const [onlineSectionPos, setOnlineSectionPos] = useState('-100%')
-
+    
     const onlineCards = () => {
         setCenterWidth('700px')
         setOnlineSectionPos('0%')
+    }
+
+
+    if (!token) {
+        return <Navigate to='/login'/>
     }
 
 
