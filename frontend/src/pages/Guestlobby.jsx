@@ -9,7 +9,6 @@ function Guestlobby(props) {
 
     const [guestName ,setGuestName] = useState('test-demo'); 
     const { token, user } = useStateContext()
-    debugger;
     if (token) {
         return <Navigate to='/lobby'/>
     }

@@ -11,14 +11,8 @@ class UserController extends Controller
 {
     public function test()
     {
-        # code...
+        return User::all();
     }
-
-
-
-
-
-
 
 
     public function register(Request $request)
@@ -42,43 +36,6 @@ class UserController extends Controller
         ]);
 
         return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
-    }
-
-
-
-
-
-    public function update(Request $request, $id)
-    {
-        // Retrieve the item from the database
-        $item = User::find($id);
-
-        if (!$item) {
-            return response()->json(['message' => 'Item not found'], 404);
-        }
-
-        // Validate the request data
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            // Add validation rules for other fields
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(['message' => 'Validation failed', 'errors' => $validator->errors()], 422);
-        }
-
-        // Update the item with the new data
-        $item->name = $request->input('name');
-        $item->email = $request->input('email');
-        $item->password = $request->input('password');
-        // Add other fields as needed
-
-        // Save the updated item
-        $item->save();
-
-        return response()->json(['message' => 'Item updated successfully']);
     }
 
 

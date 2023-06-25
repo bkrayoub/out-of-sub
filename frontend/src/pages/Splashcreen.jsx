@@ -11,7 +11,7 @@ function Splashcreen(props) {
                 <img src={logoImage}/>
                 <div className="botona1">
                     <Link id="login" to="/login"></Link>
-                    <Link id="guest" to="/lobby"></Link>
+                    <Link id="guest" to="/guest_lobby"></Link>
                 </div>
             </div>
         </>

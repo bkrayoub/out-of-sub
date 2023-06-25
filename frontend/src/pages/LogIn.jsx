@@ -1,51 +1,60 @@
-import React from 'react'
+import React, {useState } from 'react'
 import '../style/login.css';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+// import axiosClient from '../axios-client';
+import axios from 'axios';
 
 
+import { useStateContext } from '../contexts/ContextProvider';
 
 
 export default function LogIn() {
+    const {setUser, setToken} = useStateContext()
+    
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = e => {
         e.preventDefault();
-        try {
-        const response = await fetch('http://127.0.0.1:8000/api/login', {
-            method: 'POST',
-            headers: {
-            'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-        // Handle the response, e.g., redirect to a dashboard page
-        } catch (error) {
-        console.error('Error:', error);
+        const payLoad = {
+            email: email,
+            password: password,
         }
+        axios.post('http://127.0.0.1:8000/api/login', payLoad)
+        .then(({data}) => {
+            setUser(data.user)
+            setToken(data.token);
+        })
+        .catch((err) => {
+            const response = err.response;
+            if (response && response.status === 422) {
+                console.log(response.data.message)
+            }
+      })
+        
     }
 
 
   return (
-        <div className="container">
+        <div className="login_container">
+        <Link to='/splashscreen' style={{"position": "absolute" , "color": "white", "left" : "50px", "top" : "30px"}}><h1>Back</h1></Link>
 
-            <form onSubmit={handleSubmit}>
-                <h1>Connect your account</h1>
+            <form className='loginForm' onSubmit={handleSubmit}>
+                <h1>Login into your account</h1>
                 <div className='loginForm'>
-                    <input 
-                    type="text" 
-                    value={email}
+                    <input
+                    type="email"
                     onChange={(e) => setEmail(e.target.value)}
-                    />
+                    value={email}
+                     />
                     <input 
-                    type="password" 
-                    value={password}
+                    type="password"
                     onChange={(e) => setPassword(e.target.value)}
-                    />
+                    value={password}
+                     />                     
                 </div>
-                <p>You don’t have an account?<span><Link to="/signUp">create one</Link></span></p>
+                <p>Not Registered? <span><Link to="/register">Sign Up</Link></span></p>
                 <div className="botona">
                     <button type='submit'></button>
                 </div>               

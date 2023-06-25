@@ -7,20 +7,19 @@ import { Link, Navigate } from 'react-router-dom';
 import {useStateContext} from '../contexts/ContextProvider.jsx'
 
 export default function Lobby() {
-    const { token, user } = useStateContext() 
-    
     const [centerWidth, setCenterWidth] = useState('0px')
     const [onlineSectionPos, setOnlineSectionPos] = useState('-100%')
+    const {user,token} = useStateContext()
     
     const onlineCards = () => {
         setCenterWidth('700px')
         setOnlineSectionPos('0%')
     }
 
+    const onLogout = (e) => {
+        e.preventDefault();
+    } 
 
-    if (!token) {
-        return <Navigate to='/login'/>
-    }
 
 
   return (
@@ -33,7 +32,7 @@ export default function Lobby() {
                     <Link to="/hostOffline" style={{"color":"#FF7D7D"}}>Offline</Link>
                     <a href="">Setting</a>
                     <a href="./credit.html">Credit</a>
-                    <Link to="/">Exit</Link>
+                    <Link to="#" onClick={onLogout}>Log Out</Link>
                 </div>
             </div>
 
@@ -42,7 +41,7 @@ export default function Lobby() {
             <div className="right">
                 <div id="pfp-card">
                     <img src={pfp_demo} />
-                    <p>player name</p>
+                    <p>{user.name}</p>
                     <p>level:</p>
                     <div id="level-line">
                         <div id="level-line-fill"></div>

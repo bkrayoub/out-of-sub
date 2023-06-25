@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../style/signup.css';
 
 export default function SignUp() {
@@ -22,13 +23,15 @@ export default function SignUp() {
   
       const data = await response.json();
   
-      console.log(data);
-      alert("Welcome "+name+" you successfully have registered!");
-      setName('')
-      setEmail('')
-      setPassword('')
-      setconfermPass('')
-      window.location.href = '/login';
+      // console.log(data.message);
+      if (data.message === "User registered successfully"){ 
+        alert("Welcome "+name+" you successfully have registered!");
+        setName('')
+        setEmail('')
+        setPassword('')
+        setconfermPass('')
+        window.location.href = '/login';
+      }
     }
     else{
       alert("passwords don't match");
@@ -39,6 +42,7 @@ export default function SignUp() {
   return (
     <>
       <div className="container_su">
+      <Link to='/login' style={{"position": "absolute" , "color": "white", "left" : "50px", "top" : "30px"}}><h1>Back</h1></Link>
 
       <form onSubmit={handleSubmit} className="signupForm">
 
@@ -52,7 +56,7 @@ export default function SignUp() {
             
             <h3>email</h3>
             <input 
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             />
