@@ -11,9 +11,13 @@ export default function Lobby() {
     const [onlineSectionPos, setOnlineSectionPos] = useState('-100%')
     const {user,token} = useStateContext()
     
-    const onlineCards = () => {
+    const onlineCardsShow = () => {
         setCenterWidth('700px')
         setOnlineSectionPos('0%')
+    }
+    const onlineCardsHide = () => {
+        setCenterWidth('0px')
+        setOnlineSectionPos('-100%')
     }
 
     const onLogout = (e) => {
@@ -28,7 +32,7 @@ export default function Lobby() {
             <div className="left">
                 <img src={logoImage}/>
                 <div id='list'>
-                    <p href="" style={{"color":"#7DFFA9"}} onClick={onlineCards}>Online</p>
+                    <p href="" style={{"color":"#7DFFA9"}} onClick={onlineCardsShow}>Online</p>
                     <Link to="/hostOffline" style={{"color":"#FF7D7D"}}>Offline</Link>
                     <a href="">Setting</a>
                     <a href="./credit.html">Credit</a>
@@ -53,7 +57,7 @@ export default function Lobby() {
 
 
 
-            <div className="onlineSection" style={{position: 'absolute', top: onlineSectionPos}}>
+            <div onClick={onlineCardsHide} className="onlineSection" style={{position: 'absolute', top: onlineSectionPos}}>
                 <img src={logoImage} />
                 <div className="cards">
                     <a href="#">
