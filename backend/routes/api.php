@@ -15,6 +15,7 @@ Route::get('test', 'App\Http\Controllers\UserController@test');
 Route::post('register', 'App\Http\Controllers\UserController@register');
 
 Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
+Route::get('token', 'App\Http\Controllers\Api\AuthController@getToken');
 
 /**offline room routes */
 

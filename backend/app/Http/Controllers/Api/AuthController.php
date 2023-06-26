@@ -26,6 +26,11 @@ class AuthController extends Controller
         return response(compact('user', 'token'));
     }
 
+    public function getToken(){
+        $user =  auth('sanctum')->user();
+        return response()->json($user, 200);
+    }
+
 
 
 

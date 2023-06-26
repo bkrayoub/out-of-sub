@@ -25,6 +25,7 @@ export default function LogIn() {
         .then(({data}) => {
             setUser(data.user)
             setToken(data.token);
+            console.log(data);
         })
         .catch((err) => {
             const response = err.response;
