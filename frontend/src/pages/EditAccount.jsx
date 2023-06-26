@@ -1,33 +1,24 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
+import { useStateContext } from '../contexts/ContextProvider';
 import '../style/editProfile.css';
 
 
-export default function EditAcc({itemId}) {
+export default function EditAcc() {
     
-    itemId = 2
-    const [name, setName] = useState('');
-    const [newEmail, setNewEmail] = useState('');
+    const {user,token} = useStateContext()
+    const [name, setName] = useState(user.name);
+    const [newEmail, setNewEmail] = useState();
     const [newPass, setNewPass] = useState('');
-  
-    useEffect(() => {
-      // Fetch the item data from the server
-      fetch(`/api/update/${itemId}`)
-        .then(response => response.json())
-        .then(data => {
-          setName(data.name);
-          setNewEmail(data.email);
-          setNewPass(data.password);
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-    }, [itemId]);
-  
+
+    console.log('hi ' + user.name)
+
+
+
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const response = await fetch(`/api/update/${itemId}`, {
+        const response = await fetch(`http://127.0.0.1:8000/api/update/${user.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -47,7 +38,7 @@ export default function EditAcc({itemId}) {
     return (
         <>
     <div className="container">
-        <form className="main" onSubmit={handleSubmit}>
+        <form className="main">
             <div className="left">
                 <h3>username</h3> 
                 <input 

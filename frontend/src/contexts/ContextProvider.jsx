@@ -9,9 +9,7 @@ const StateContext = createContext({
 })
 export const ContextProvider = ({ children }) => {
 
-    const [user, setUser] = useState({
-        name: "test",
-    });
+    const [user, setUser] = useState({ });
 
     useEffect(() => {
 

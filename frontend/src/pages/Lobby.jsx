@@ -4,12 +4,14 @@ import '../style/lobby.css';
 import logoImage from '../image/logo.png'
 import pfp_demo from '../image/pfp-demo.png'
 import { Link, Navigate } from 'react-router-dom';
-import {useStateContext} from '../contexts/ContextProvider.jsx'
+import {useStateContext} from '../contexts/ContextProvider.jsx';
+import axios from 'axios';
+
 
 export default function Lobby() {
     const [centerWidth, setCenterWidth] = useState('0px')
     const [onlineSectionPos, setOnlineSectionPos] = useState('-100%')
-    const {user,token} = useStateContext()
+    const {user , token , setToken , setUser} = useStateContext()
     
     const onlineCardsShow = () => {
         setCenterWidth('700px')
@@ -20,9 +22,16 @@ export default function Lobby() {
         setOnlineSectionPos('-100%')
     }
 
-    const onLogout = (e) => {
-        e.preventDefault();
-    } 
+    const onLogout = ev => {
+        ev.preventDefault()
+        
+        
+        axios.post('http://127.0.0.1:8000/api/logout')
+        .then(() => {
+            setUser({})
+            setToken(null)
+        })
+    }
 
 
 
