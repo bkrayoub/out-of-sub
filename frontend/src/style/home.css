@@ -1,6 +1,5 @@
-
 /* -------------------------------------------------- */
-body{
+body {
     overflow: hidden;
     padding: 0px;
     height: 100vh;
@@ -10,22 +9,24 @@ body{
     background-image: url(../image/bgbg.png);
 
 }
+
 .container1 {
     border: 5px solid #f8dcff;
-    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
-    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
-    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
     border-radius: 20px;
     background-image: url(../image/bg.png);
     background-size: cover;
     background-repeat: no-repeat;
-    width: 1216px;
+    width: 100%;
     height: 684px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 .container1>img {
     width: 800px;
 }
@@ -38,11 +39,13 @@ body{
     text-align: center;
     display: flex;
     align-items: center;
-    justify-content: center;    
+    justify-content: center;
 }
-.botona1 a{
+
+.botona1 a {
     margin: 0px 20px;
 }
+
 .botona1 #login {
     width: 300px;
     height: 80px;
@@ -53,12 +56,13 @@ body{
     animation-iteration-count: infinite;
     transition: .33s;
     border-radius: 100px;
-    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
-    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
-    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
 }
+
 .botona1 #login:hover {
-    
+
     box-shadow: 0px 0px 36px -7px rgba(226, 226, 226, 0.8);
     -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 255, 255, 0.8);
     -moz-box-shadow: 0px 0px 36px -7px rgba(255, 255, 255, 0.8);
@@ -78,10 +82,23 @@ body{
     -webkit-box-shadow: 0px 0px 36px -7px rgba(175, 175, 175, 0.8);
     -moz-box-shadow: 0px 0px 36px -7px rgba(231, 231, 231, 0.8);
 }
+
 .botona1 #guest:hover {
-    
+
     box-shadow: 0px 0px 36px -7px rgba(226, 226, 226, 0.8);
     -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 255, 255, 0.8);
     -moz-box-shadow: 0px 0px 36px -7px rgba(255, 255, 255, 0.8);
 }
 
+input,
+select,
+option {
+    color: black;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

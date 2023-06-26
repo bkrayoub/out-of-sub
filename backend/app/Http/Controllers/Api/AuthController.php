@@ -31,14 +31,11 @@ class AuthController extends Controller
         return response()->json($user, 200);
     }
 
-
-
-
-
     public function logout(Request $req)
     {
         /** @var User $user */
         $user = $req->user();
+        return $user;
         //dd($user);
 
         $user->currentAccessToken()->delete();

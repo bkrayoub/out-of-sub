@@ -24,7 +24,7 @@ export const ContextProvider = ({ children }) => {
                 });
                 console.log(data);
                 if (data) {
-                    setUser((old)=>{return {...old, name:data.data.name}});
+                    setUser((old)=>{return {...old, name:data.data.name, id: data.data.id}});
                     console.log(data.data.name);
                 }
             }

@@ -12,7 +12,7 @@ body{
     font-family: glossyRegular;
     outline: none;
 }
-.container {
+.editContainer {
     border: 5px solid #f8dcff;
     box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
     -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
@@ -27,14 +27,14 @@ body{
     align-items: center;
     justify-content: center;
 }
-.container h3 {
+.editContainer h3 {
     color: white;
     font-size: 25px;
     padding: 10px 20px;
     margin: 0px;
     font-weight: 400;
 }
-.botona {
+.editContainer .botona {
     cursor: pointer;
     width: 300px;
     height: 80px;

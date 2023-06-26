@@ -24,12 +24,11 @@ export default function Lobby() {
 
     const onLogout = ev => {
         ev.preventDefault()
-        
-        
         axios.post('http://127.0.0.1:8000/api/logout')
-        .then(() => {
-            setUser({})
-            setToken(null)
+        .then((res) => {
+            console.log(res);
+            setUser({});
+            setToken(null);
         })
     }
 
@@ -42,7 +41,7 @@ export default function Lobby() {
                 <img src={logoImage}/>
                 <div id='list'>
                     <p href="" style={{"color":"#7DFFA9"}} onClick={onlineCardsShow}>Online</p>
-                    <Link to="/hostOffline" style={{"color":"#FF7D7D"}}>Offline</Link>
+                    <Link to="/create_offline_room" style={{"color":"#FF7D7D"}}>Offline</Link>
                     <a href="">Setting</a>
                     <Link to="/credit">Credit</Link>
                     <Link to="#" onClick={onLogout}>Log Out</Link>
@@ -59,6 +58,7 @@ export default function Lobby() {
                     <div id="level-line">
                         <div id="level-line-fill"></div>
                     </div>
+                    <Link to="/edit_profile">edit</Link>
                 </div>
 
                 <div className="news">News</div>

@@ -9,12 +9,12 @@ function DefaultLayout() {
 
     
     
-    useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/user')
-        .then(({data}) => {
-            setUser(data)
-        })
-    }, [])
+    // useEffect(() => {
+    //     axios.get('http://127.0.0.1:8000/api/user')
+    //     .then(({data}) => {
+    //         setUser(data)
+    //     })
+    // }, [])
     
     if (!token) {
         return <Navigate to='/splashscreen'/>

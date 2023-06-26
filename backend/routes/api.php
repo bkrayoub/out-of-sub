@@ -7,12 +7,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OfflineRoomController;
 
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
     Route::post('logout', 'App\Http\Controllers\Api\AuthController@logout');
-
 });
 
 Route::get('test', 'App\Http\Controllers\UserController@test');
@@ -23,6 +22,10 @@ Route::post('login', 'App\Http\Controllers\Api\AuthController@login');
 
 Route::get('token', 'App\Http\Controllers\Api\AuthController@getToken');
 
+Route::post('logout', 'App\Http\Controllers\Api\AuthController@logout');
+
+Route::delete('destroy/{id}', 'App\Http\Controllers\UserController@destroy');
+
 /**offline room routes */
 
 Route::get('offlinePlayers', 'App\Http\Controllers\OfflineRoomController@index');
@@ -31,4 +34,4 @@ Route::post('addOfflinePlayer', 'App\Http\Controllers\OfflineRoomController@addO
 
 Route::delete('removePlayer/{id}', 'App\Http\Controllers\OfflineRoomController@removePlayer');
 
-
+Route::put('/update/{id}', 'App\Http\Controllers\UserController@update');

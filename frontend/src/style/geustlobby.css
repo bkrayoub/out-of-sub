@@ -20,8 +20,8 @@ body{
     background-image: url(../image/bgg.png);
     background-size: cover;
     background-repeat: no-repeat;
-    width: 1216px;
-    height: 684px;
+    width: 95%;
+    height: 95vh;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
