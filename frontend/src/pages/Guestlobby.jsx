@@ -23,7 +23,7 @@ function Guestlobby(props) {
                     <p className='unavailable'>Online</p>
                     <Link to="/create_offline_room" style={{"color":"#FF7D7D"}}>Offline</Link>
                     <a href="">Setting</a>
-                    <a href="./credit.html">Credit</a>
+                    <Link to="/credit">Credit</Link>
                     <Link to="/">Exit</Link>
                 </div>
             </div>

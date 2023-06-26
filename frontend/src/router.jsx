@@ -1,4 +1,5 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
+import Credit from "./pages/Credit";
 import EditAcc from "./pages/EditAccount";
 import Guestlobby from "./pages/Guestlobby";
 import HostOffline from "./pages/HostOffline";
@@ -57,7 +58,11 @@ const router = createBrowserRouter([
         path: '/create_offline_room',
         element: <HostOffline/>
     },
-
+    
+    {
+        path: '/credit',
+        element: <Credit/>
+    },
     {
         path: '*',
         element: <NotFound/>

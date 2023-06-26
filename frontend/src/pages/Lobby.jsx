@@ -44,7 +44,7 @@ export default function Lobby() {
                     <p href="" style={{"color":"#7DFFA9"}} onClick={onlineCardsShow}>Online</p>
                     <Link to="/hostOffline" style={{"color":"#FF7D7D"}}>Offline</Link>
                     <a href="">Setting</a>
-                    <a href="./credit.html">Credit</a>
+                    <Link to="/credit">Credit</Link>
                     <Link to="#" onClick={onLogout}>Log Out</Link>
                 </div>
             </div>
