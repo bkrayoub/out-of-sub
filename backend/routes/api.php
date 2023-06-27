@@ -26,6 +26,7 @@ Route::post('logout', 'App\Http\Controllers\Api\AuthController@logout');
 
 Route::delete('destroy/{id}', 'App\Http\Controllers\UserController@destroy');
 
+
 /**offline room routes */
 
 Route::get('offlinePlayers', 'App\Http\Controllers\OfflineRoomController@index');
@@ -34,4 +35,12 @@ Route::post('addOfflinePlayer', 'App\Http\Controllers\OfflineRoomController@addO
 
 Route::delete('removePlayer/{id}', 'App\Http\Controllers\OfflineRoomController@removePlayer');
 
-Route::put('/update/{id}', 'App\Http\Controllers\UserController@update');
+Route::put('update/{id}', 'App\Http\Controllers\UserController@update');
+
+
+/** category and subjects */
+
+Route::get('getCategories' , 'App\Http\Controllers\CategoryController@index');
+
+Route::get('getSubjects/{id}' , 'App\Http\Controllers\SubCategoryController@index');
+

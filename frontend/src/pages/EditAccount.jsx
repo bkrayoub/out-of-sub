@@ -71,7 +71,7 @@ export default function EditAcc() {
 
   return (
     <>
-      <div className="editContainer">
+      <div >
         <Link to='/lobby' style={{ "position": "absolute", "color": "white", "left": "50px", "top": "30px" }}><h1>Back</h1></Link>
         <form onSubmit={handleSubmit} className="main">
           <div className="left">

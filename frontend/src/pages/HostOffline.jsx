@@ -8,18 +8,48 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 export default function HostOffline() {
 
-    const [addOpacity, setAddOpacity] = useState('none');
     const [show, setShow] = useState(false);
 
 
-    const removeOpacity = () => {
-        setAddOpacity('none')
-        setAddPlayer('')
-    }
-    const addPlayerInretface = () => {
-        setAddOpacity('flex')
-    }
 
+
+
+
+    /*-------------------------- select all categories to list them --------------------------*/
+    const [categories, setCategory] = useState([]);
+
+    useEffect(() => {
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/getCategories');
+            setCategory(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error(categories);
+        }
+    };
+    //////////////////////////////////////////////////
+    const [subCategories, setSubCategories] = useState([]);
+
+    useEffect(() => {
+        fetchSubcategies();
+    }, []);
+
+    const fetchSubcategies = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/getSubjects/'+categories.id+'');
+            setSubCategories(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error(subCategories);
+        }
+    };
+
+
+    //////////////////////////////////////////////////
     const [player, setAddPlayer] = useState('');
     let currentPlayers = JSON.parse(localStorage.getItem("localPlayers"));
     if(!currentPlayers){
@@ -34,7 +64,6 @@ export default function HostOffline() {
 
 
     ////////////////////////////////////////////////////////
-
     const handleAddition = async (e) => {
         e.preventDefault();
         setPlayers((old) => {
@@ -43,11 +72,9 @@ export default function HostOffline() {
         });
         setPlayersID(playersID + 1);
     };
+
+
     ////////////////////////////////////////////////////////
-
-
-
-
     useEffect(() => {
         const localPlayers = localStorage.getItem("localPlayers");
         if (localPlayers) {
@@ -68,11 +95,12 @@ export default function HostOffline() {
         localStorage.setItem("currentID", playersID);
     }, [playersID]);
 
-    ///////////////////////////////
+
+    ////////////////////////////////////////////////////////
     const handleDelete = async (id) => {
         setPlayers(players.filter((player) => player.id !== id));
     };
-    ///////////////////////////////
+
     return (
         <div className="container_ho">
             <Link to='/guest_lobby' style={{ "position": "absolute", "color": "white", "left": "50px", "top": "30px" }}><h1>Back</h1></Link>
@@ -110,7 +138,7 @@ export default function HostOffline() {
                     <div>
                         <p>category</p>
                         <select name="" id="">
-                            <option value="">animals</option>
+                            <option value="">{categories.name}</option>
                             <option value="">more categories are coming soon</option>
                         </select>
                     </div>
