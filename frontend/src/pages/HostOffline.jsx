@@ -21,7 +21,10 @@ export default function HostOffline() {
     }
 
     const [player, setAddPlayer] = useState('');
-    const currentPlayers = JSON.parse(localStorage.getItem("localPlayers"));
+    let currentPlayers = JSON.parse(localStorage.getItem("localPlayers"));
+    if(!currentPlayers){
+        currentPlayers = [];
+    }
     const [players, setPlayers] = useState(currentPlayers);
     if (!localStorage.getItem("currentID")) {
         localStorage.setItem("currentID", 1)
