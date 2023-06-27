@@ -65,7 +65,6 @@ export default function HostOffline() {
         localStorage.setItem("currentID", playersID);
     }, [playersID]);
 
-    console.log(players.name)
     ///////////////////////////////
     const handleDelete = async (id) => {
         setPlayers(players.filter((player) => player.id !== id));
