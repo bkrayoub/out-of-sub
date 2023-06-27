@@ -7,14 +7,10 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 
 export default function HostOffline() {
-
+    /*-------------------------- show and hide add div --------------------------*/
     const [show, setShow] = useState(false);
 
-
-
-
-
-
+    
     /*-------------------------- select all categories to list them --------------------------*/
     const [categories, setCategory] = useState([]);
 
@@ -31,13 +27,11 @@ export default function HostOffline() {
             console.error(categories);
         }
     };
-    //////////////////////////////////////////////////
+    /*-------------------------- select all subjects of selected category  --------------------------*/
     const [subCategories, setSubCategories] = useState([]);
-
     useEffect(() => {
         fetchSubcategies();
     }, []);
-
     const fetchSubcategies = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8000/api/getSubjects/'+categories.id+'');
@@ -49,7 +43,7 @@ export default function HostOffline() {
     };
 
 
-    //////////////////////////////////////////////////
+    /*-------------------------- store players from local storage --------------------------*/
     const [player, setAddPlayer] = useState('');
     let currentPlayers = JSON.parse(localStorage.getItem("localPlayers"));
     if(!currentPlayers){
@@ -63,7 +57,7 @@ export default function HostOffline() {
     const [playersID, setPlayersID] = useState(currentID);
 
 
-    ////////////////////////////////////////////////////////
+    /*-------------------------- add player to local storage --------------------------*/
     const handleAddition = async (e) => {
         e.preventDefault();
         setPlayers((old) => {
@@ -72,9 +66,6 @@ export default function HostOffline() {
         });
         setPlayersID(playersID + 1);
     };
-
-
-    ////////////////////////////////////////////////////////
     useEffect(() => {
         const localPlayers = localStorage.getItem("localPlayers");
         if (localPlayers) {
@@ -83,6 +74,8 @@ export default function HostOffline() {
         }
     }, []);
 
+
+    /*-------------------------- check if local storage returns somthing --------------------------*/
     useEffect(() => {
         const PlayersJson = JSON.stringify(players);
         localStorage.setItem("localPlayers", PlayersJson);
@@ -91,12 +84,14 @@ export default function HostOffline() {
         }
     }, [players]);
 
+
+    /*-------------------------- set id to next player --------------------------*/
     useEffect(() => {
         localStorage.setItem("currentID", playersID);
     }, [playersID]);
 
 
-    ////////////////////////////////////////////////////////
+    /*-------------------------- delete player from local storage --------------------------*/
     const handleDelete = async (id) => {
         setPlayers(players.filter((player) => player.id !== id));
     };
