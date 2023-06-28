@@ -3,16 +3,17 @@ import '../style/hostOffline.css';
 import addImage from '../image/add.png';
 import startImage from '../image/start.png';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 
 
 export default function HostOffline() {
     /*-------------------------- show and hide add div --------------------------*/
     const [show, setShow] = useState(false);
 
-    
+
     /*-------------------------- select all categories to list them --------------------------*/
-    const [categories, setCategory] = useState([]);
+    const [categories, setCategory] = useState({});
+    const [selectedCategory, setSelectedCategory] = useState("");
 
     useEffect(() => {
         fetchCategories();
@@ -22,6 +23,7 @@ export default function HostOffline() {
         try {
             const response = await axios.get('http://127.0.0.1:8000/api/getCategories');
             setCategory(response.data);
+            setSelectedCategory(response.data.name);
             console.log(response.data);
         } catch (error) {
             console.error(categories);
@@ -34,8 +36,9 @@ export default function HostOffline() {
     }, []);
     const fetchSubcategies = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/api/getSubjects/'+categories.id+'');
+            const response = await axios.get('http://127.0.0.1:8000/api/getSubjects/' + categories.id);
             setSubCategories(response.data);
+            
             console.log(response.data);
         } catch (error) {
             console.error(subCategories);
@@ -46,7 +49,7 @@ export default function HostOffline() {
     /*-------------------------- store players from local storage --------------------------*/
     const [player, setAddPlayer] = useState('');
     let currentPlayers = JSON.parse(localStorage.getItem("localPlayers"));
-    if(!currentPlayers){
+    if (!currentPlayers) {
         currentPlayers = [];
     }
     const [players, setPlayers] = useState(currentPlayers);
@@ -132,8 +135,11 @@ export default function HostOffline() {
                 <div className="hostoperation">
                     <div>
                         <p>category</p>
-                        <select name="" id="">
-                            <option value="">{categories.name}</option>
+                        <select name="" id="" onChange={(e) => {
+                            setSelectedCategory(e.target.value);
+                            console.log(e.target.value);
+                        }}>
+                            <option value={categories.name}>{categories.name}</option>
                             <option value="">more categories are coming soon</option>
                         </select>
                     </div>
@@ -148,7 +154,11 @@ export default function HostOffline() {
                     <img alt='' src={addImage} onClick={() => {
                         setPlayers([]);
                     }} />
-                    <img alt='' src={startImage} className="button" />
+                    <img alt='' src={startImage} className="button" onClick={() => {
+                        localStorage.setItem("category", selectedCategory);
+                        console.log("selectedCategory ", selectedCategory);
+                        window.location.href = '/offline_game';
+                    }} />
                 </div>
             </div>
         </div>

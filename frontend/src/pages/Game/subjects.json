@@ -1,0 +1,142 @@
+[
+    {
+        "id": 1,
+        "name": "Wolf",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 2,
+        "name": "Fox",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 3,
+        "name": "Cat",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 4,
+        "name": "Dog",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 5,
+        "name": "Lion",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 6,
+        "name": "Butterfly",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 7,
+        "name": "Snike",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 8,
+        "name": "Bear",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 9,
+        "name": "Monkey",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 10,
+        "name": "Tiger",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 11,
+        "name": "Horse",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 12,
+        "name": "Cow",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 13,
+        "name": "Pig",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 14,
+        "name": "Sheep",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 15,
+        "name": "Giraffe",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 16,
+        "name": "Dolphin",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 17,
+        "name": "Kangaroo",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 18,
+        "name": "Rabbit",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 19,
+        "name": "Chicken",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    },
+    {
+        "id": 20,
+        "name": "Bee",
+        "category_id": 1,
+        "created_at": null,
+        "updated_at": null
+    }
+]

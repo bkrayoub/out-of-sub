@@ -10,62 +10,68 @@ import NotFound from "./pages/NotFound";
 import Splashcreen from "./pages/Splashcreen";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
+import Game from "./pages/Game/Game";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <DefaultLayout/>,
+        element: <DefaultLayout />,
         children: [
             {
                 path: '/',
-                element: <Navigate to='/Lobby'/>
+                element: <Navigate to='/Lobby' />
             },
             {
                 path: '/lobby',
-                element: <Lobby/>
+                element: <Lobby />
             },
             {
                 path: '/edit_profile',
-                element: <EditAcc/>
+                element: <EditAcc />
             },
         ]
 
     },
     {
         path: '/',
-        element: <GuestLayout/>,
+        element: <GuestLayout />,
         children: [
             {
                 path: '/login',
-                element: <LogIn/>
+                element: <LogIn />
             },
             {
                 path: '/register',
-                element: <SignUp/>
+                element: <SignUp />
             },
             {
                 path: '/splashscreen',
-                element: <Splashcreen/>
+                element: <Splashcreen />
             },
             {
                 path: '/guest_lobby',
-                element: <Guestlobby/>
+                element: <Guestlobby />
             },
         ]
     },
 
     {
         path: '/create_offline_room',
-        element: <HostOffline/>
+        element: <HostOffline />
     },
-    
+
+    {
+        path: '/offline_game',
+        element: <Game />
+    },
+
     {
         path: '/credit',
-        element: <Credit/>
+        element: <Credit />
     },
     {
         path: '*',
-        element: <NotFound/>
+        element: <NotFound />
     },
 ])
 export default router;
