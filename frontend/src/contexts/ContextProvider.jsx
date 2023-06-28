@@ -22,10 +22,8 @@ export const ContextProvider = ({ children }) => {
                 const data = await axios.get('http://127.0.0.1:8000/api/token', {
                     headers: headers
                 });
-                console.log(data);
                 if (data) {
                     setUser((old)=>{return {...old, name:data.data.name, id: data.data.id}});
-                    console.log(data.data.name);
                 }
             }
         }
