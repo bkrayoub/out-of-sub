@@ -35,7 +35,7 @@ function Game(props) {
         })
         tempPlayers = newList;
 
-        for (let i = 1; i < 3; i++) {
+        for (let i = 1; i < 2; i++) {
             console.log("ok ", players);
             let rand = Math.floor(Math.random() * players.length + 1);
             while (selectedRands.includes(rand)) {
