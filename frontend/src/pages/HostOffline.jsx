@@ -78,7 +78,7 @@ export default function HostOffline() {
     }, []);
 
 
-    /*-------------------------- check if local storage returns somthing --------------------------*/
+    /*-------------------------- Update Local Storage whenever "players" is changed --------------------------*/
     useEffect(() => {
         const PlayersJson = JSON.stringify(players);
         localStorage.setItem("localPlayers", PlayersJson);
