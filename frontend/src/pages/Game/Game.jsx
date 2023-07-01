@@ -5,6 +5,7 @@ import Category from "./Category";
 import Role from "./Role";
 import Questions from "./Questions";
 import Vote from "./Vote";
+import Result from "./Result";
 
 function Game(props) {
     const localCategory = localStorage.getItem("category");
@@ -15,7 +16,7 @@ function Game(props) {
 
     const localPlayers = JSON.parse(localStorage.getItem("localPlayers"));
     const allPlayers = localPlayers.map((item) => {
-        return { ...item, isObtrusive: false }
+        return { ...item, isObtrusive: false, votes: 0 }
     })
     const [players, setPlayers] = useState(allPlayers);
 
@@ -24,6 +25,7 @@ function Game(props) {
     const [showRole, setShowRole] = useState(false);
     const [showQuestions, setShowQuestions] = useState(false);
     const [showVote, setShowVote] = useState(false);
+    const [showResult, setShowResult] = useState(false);
 
     /********** Update Local Storage whenever "players" is changed *********/
     useEffect(() => {
@@ -101,6 +103,12 @@ function Game(props) {
 
             <Vote players={players} setPlayers={setPlayers}
                 showVote={showVote} setShowVote={setShowVote}
+                setShowResult={setShowResult}
+            />
+
+            <Result
+                players={players} showResult={showResult}
+                setShowResult={setShowResult}
             />
         </div>
     );

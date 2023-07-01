@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Vote({ showVote, setShowVote, players, setPlayers }) {
+function Vote({ showVote, setShowVote, players, setPlayers, setShowResult }) {
 
     const [index, setIndex] = useState(0);
     useEffect(() => {
@@ -8,19 +8,26 @@ function Vote({ showVote, setShowVote, players, setPlayers }) {
     })
 
     const handleVote = (player) => {
+
         const newList = players.map((item) => {
             if (item.id === player.id) {
-                if (item.vote) {
-                    return { ...item, vote: item.vote + 1 };
+                if (item.votes) {
+                    return { ...item, votes: item.votes + 1 };
                 }
-                return { ...item, vote: 1 };
+                return { ...item, votes: 1 };
             }
             else {
                 return item;
             }
         });
         setPlayers(newList);
-        setIndex(index + 1);
+        if (index < players.length - 1) {
+            setIndex(index + 1);
+        }
+        else {
+            setShowVote(false);
+            setShowResult(true);
+        }
     }
 
     if (showVote) {
