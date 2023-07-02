@@ -8,26 +8,58 @@ function Vote({ showVote, setShowVote, players, setPlayers, setShowResult }) {
     })
 
     const handleVote = (player) => {
+        let score = 0;
+        if (player.isObtrusive && !players[index].isObtrusive) {
+            score = 50;
+        }
 
-        const newList = players.map((item) => {
+        let playersList = players.map((item) => {
             if (item.id === player.id) {
-                if (item.votes) {
-                    return { ...item, votes: item.votes + 1 };
-                }
-                return { ...item, votes: 1 };
+                return { ...item, votes: item.votes + 1 };
+            }
+            else if (item.id === players[index].id) {
+                return { ...item, score: score };
             }
             else {
                 return item;
             }
         });
-        setPlayers(newList);
+
         if (index < players.length - 1) {
             setIndex(index + 1);
         }
         else {
+            // const kicked = players.filter((item)=>item.is)
+            playersList = playersList.sort((a, b) => { return b.votes - a.votes });
+            let obstrusivesWon = false;
+            for (let i = 0; i < 2; i++) {
+                if (!playersList[i].isObtrusive) {
+                    obstrusivesWon = true;
+                }
+
+            }
+            if (obstrusivesWon) {
+                playersList = playersList.map((item) => {
+                    if (item.isObtrusive) {
+                        return { ...item, score: 100 }
+                    }
+                    return item;
+                })
+            }
+            else {
+                playersList = playersList.map((item) => {
+                    if (!item.isObtrusive) {
+                        return { ...item, score: item.score + 50 }
+                    }
+                    return item;
+                })
+            }
+            console.log("kkk", playersList);
             setShowVote(false);
             setShowResult(true);
         }
+
+        setPlayers(playersList);
     }
 
     if (showVote) {

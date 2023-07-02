@@ -16,7 +16,7 @@ function Game(props) {
 
     const localPlayers = JSON.parse(localStorage.getItem("localPlayers"));
     const allPlayers = localPlayers.map((item) => {
-        return { ...item, isObtrusive: false, votes: 0 }
+        return { ...item, isObtrusive: false, votes: 0, score: 0 };
     })
     const [players, setPlayers] = useState(allPlayers);
 
@@ -45,8 +45,9 @@ function Game(props) {
     const randObtrusive = () => {
         const selectedRands = [];
         let tempPlayers = players;
-        let rand = Math.floor(Math.random() * players.length + 1);
+        let rand = Math.floor(Math.random() * players.length);
         selectedRands.push(rand);
+        console.log("temp", rand);
         const newList = tempPlayers.map((item) => {
             if (item.id === tempPlayers[rand].id) {
                 return { ...item, isObtrusive: true };

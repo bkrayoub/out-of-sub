@@ -6,28 +6,30 @@ function Result({ players, showResult, setShowResult }) {
         return (
             <div>
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
-                    <div style={{ width: "50%" }}>Name</div>
-                    <div style={{ width: "50%" }}>Votes</div>
+                    <div style={{ width: "33.33%" }}>Name</div>
+                    <div style={{ width: "33.33%" }}>Votes</div>
+                    <div style={{ width: "33.33%" }}>Score</div>
                     {players.map((item) => {
                         return <>
-                            <div style={{ width: "50%" }}>{item.name}</div>
-                            <div style={{ width: "50%" }}>{item.votes}</div>
+                            <div style={{ width: "33.33%" }}>{item.name}</div>
+                            <div style={{ width: "33.33%" }}>{item.votes}</div>
+                            <div style={{ width: "33.33%" }}>{showObt ? item.score : "??"}</div>
                         </>
                     })}
                 </div>
-                <div>
-                    <button onClick={()=>setShowObt(true)}>Show Obtrusives</button>
-                </div>
+
                 {showObt ? <div>
-                    <h2>the btrusives are :</h2>
+                    <h2>The obtrusives are :</h2>
                     <ul>
-                        {players.map((item)=>{
-                            if(item.isObtrusive){
+                        {players.map((item) => {
+                            if (item.isObtrusive) {
                                 return <li>{item.name}</li>
                             }
                         })}
                     </ul>
-                </div> : ""}
+                </div> : <div>
+                    <button onClick={() => setShowObt(true)}>Show Obtrusives</button>
+                </div>}
             </div>
         );
     }
