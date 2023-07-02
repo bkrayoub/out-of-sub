@@ -1,38 +1,45 @@
 import { useState } from "react";
+import styles from '../../style/gameplay.css'
+
+
 
 function Role({ selectedSubject, players, showRole, setShowRole, setShowQuestions }) {
     const [index, setIndex] = useState(0);
     const [show, setShow] = useState(false);
     console.log(players);
     if (showRole) {
-        return <div>
+        return <div className="gameContainer">
             {show ? <>
                 {!players[index].isObtrusive ?
                     <div>
                         <p>
-                            {players[index].name}
+                            <span className="ferstCap title">{players[index].name}</span>
                         </p>
-                        <h1>
-                            Subject:
-                        </h1>
-                        <p>
+                        <p className="title fontGloosy strok-thin category">
                             {selectedSubject.name}
                         </p>
                     </div> :
-                    <div>
-                        ydk fih jhjhhjhjhjhj
+                    <div className="title">
+                        You are the obtrusive
                     </div>
                 }
-            </> : <div>
-                give the device to {players[index].name}
+            </> : <div className="normal">
+                <h1 className="bigTitle">
+                    <span className="ferstCap">{players[index].name}</span>
+                </h1>
+                <p>give the device to <span className="ferstCap">{players[index].name}</span>.
+                <br />
+                <br />
+                <span className="ferstCap">{players[index].name}</span> don’t let your friends see the the screen while you inspect your rule </p>
             </div>
             }
-            {show ? <div>
+            {show ? <div className="btnContainer">
+
                 {players.length - 1 !== index ? <button onClick={() => {
                     setIndex(index + 1);
                     setShow(false);
                 }}>NEXT</button> :
-                    <button onClick={() => {
+                    <button className=".nextBtn" onClick={() => {
                         setShowRole(false);
                         setShowQuestions(true);
                     }}>
@@ -40,7 +47,7 @@ function Role({ selectedSubject, players, showRole, setShowRole, setShowQuestion
                     </button>
                 }
             </div> : <div>
-                <button onClick={() => setShow(true)}>NEXT</button>
+                <button onClick={() => setShow(true)} className="nextBtn">NEXT</button>
             </div>
             }
         </div>

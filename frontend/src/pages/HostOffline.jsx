@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-ro
 export default function HostOffline() {
     /*-------------------------- show and hide add div --------------------------*/
     const [show, setShow] = useState(false);
+    const [numObt, setNumObt] = useState(1);
 
 
     /*-------------------------- select all categories to list them --------------------------*/
@@ -38,7 +39,7 @@ export default function HostOffline() {
         try {
             const response = await axios.get('http://127.0.0.1:8000/api/getSubjects/' + categories.id);
             setSubCategories(response.data);
-            
+
             console.log(response.data);
         } catch (error) {
             console.error(subCategories);
@@ -139,14 +140,22 @@ export default function HostOffline() {
                             setSelectedCategory(e.target.value);
                             console.log(e.target.value);
                         }}>
-                            <option value={categories.name}>{categories.name}</option>
+                            <option value={categories.name} selected>{categories.name}</option>
                             <option value="">more categories are coming soon</option>
                         </select>
                     </div>
                     <div>
                         <p>obtrusives</p>
-                        <button>1</button>
-                        <button>2</button>
+                        <div className='flex justify-center gap-2'>
+                            <button className={"rounded-[5px] px-2 "
+                                + (numObt === 1 ? " bg-[#701ACD] " : " bg-[#9157cf] ")}
+                                onClick={() => setNumObt(1)}
+                            >1</button>
+                            <button className={" rounded-[5px] px-2 "
+                                + (numObt === 2 ? " bg-[#701ACD] " : " bg-[#9157cf] ")}
+                                onClick={() => setNumObt(2)}
+                            >2</button>
+                        </div>
                     </div>
                 </div>
                 <div className="buttons">
@@ -156,6 +165,7 @@ export default function HostOffline() {
                     }} />
                     <img alt='' src={startImage} className="button" onClick={() => {
                         localStorage.setItem("category", selectedCategory);
+                        localStorage.setItem("numObts", numObt);
                         console.log("selectedCategory ", selectedCategory);
                         window.location.href = '/offline_game';
                     }} />

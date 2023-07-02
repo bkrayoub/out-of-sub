@@ -1,0 +1,89 @@
+body {
+    margin: 0;
+}
+.gameContainer {
+    background-color: rgba(240, 248, 255, 0.242);
+    width: 60vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+}
+.title {
+    font-size: 40px;
+}
+.ferstCap {
+    text-transform: capitalize;
+}
+.bigTitle {
+    font-size: 62px;
+    margin: 20px 0px;
+}
+.fontGloosy {
+    font-family: coffeCake;
+}
+.strok-thin {
+    -webkit-text-stroke-width: thin !important;
+    -webkit-text-stroke-color: #270f40 !important;
+}
+.normal {
+    font-size: 25px;
+    padding-bottom: 50px;
+}
+.gameContainer  .category{
+    font-size: 120px;
+    color: #F0E2FF;
+}
+.btns {
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: space-between;
+}
+.gameContainer .nextBtn ,.btnContainer{
+    border: 0px solid;
+    cursor: pointer;
+    width: 150px;
+    margin-top: 60px;
+    height: 40px;
+    background-image: url(../image/btnTemplate.png);
+    background-size: cover;
+    color: #270f40;
+    font-weight: bold;
+    transition: .33s;
+    border-radius: 100px;
+    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+}
+.gameContainer .nextBtn:hover, .gameContainer .voteBtn:hover {
+        box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
+        -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
+        -moz-box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
+}
+.gameContainer .voteBtn{
+    border: 0px solid;
+    cursor: pointer;
+    width: 150px;
+    margin-top: 60px;
+    height: 40px;
+    color: #b00f01;
+    font-weight: bold;
+    background-image: url(../image/btnTemplate.png);
+    background-size: cover;
+    transition: .33s;
+    border-radius: 100px;
+    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+}
+.btnContainer button {
+    width: 100%;
+    height: 100%;
+}
+.normal {
+    font-size: 25px !important;
+}

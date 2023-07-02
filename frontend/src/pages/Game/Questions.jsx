@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from '../../style/gameplay.css'
 
 function Questions({ players, showQuestions, setShowQuestions, setShowVote }) {
     const [start, setStart] = useState(false);
@@ -29,25 +30,26 @@ function Questions({ players, showQuestions, setShowQuestions, setShowVote }) {
     if (showQuestions) {
         if (!start) {
             return (
-                <div>
-                    <h2>wanna start the questions?</h2>
-                    <button onClick={() => setStart(true)}>Start</button>
+                <div className="gameContainer">
+                    <h2 className="bigTitle">Q&A</h2>
+                    <p className="normal">From now the players can ask each other about the subject and trying to find who the obtrusive is</p>
+                    <button className="nextBtn" onClick={() => setStart(true)}>Start</button>
                 </div>
             );
         }
         else {
             return (
-                <div>
-                    <h1>
+                <div className="gameContainer">
+                    <h1 className="title">
                         {currentQuestioner.name} Ask {currentAnswerer.name}
                     </h1>
-                    <button onClick={handleNext}>Next</button>
-                    {players.length < numQ ?
-                        <button onClick={() => {
-                            setShowQuestions(false);
-                            setShowVote(true);
-                        }}>Vote</button>
-                        : ''}
+                    <div className="btns">
+                        <button className="nextBtn" onClick={handleNext}>Next</button>
+                        {players.length < numQ ?
+                            <button className="voteBtn" onClick={() => { setShowQuestions(false); setShowVote(true); }}>
+                                Vote
+                            </button> : ''}
+                    </div>
                 </div>
             );
         }

@@ -7,8 +7,11 @@ import Questions from "./Questions";
 import Vote from "./Vote";
 import Result from "./Result";
 
+// import styles from "../../";
+
 function Game(props) {
     const localCategory = localStorage.getItem("category");
+    const localNumObts = localStorage.getItem("numObts");
     const [category, setCategory] = useState(localCategory);
 
     const [subjects, setSubjects] = useState(subjectsJSON);
@@ -58,7 +61,7 @@ function Game(props) {
         })
         tempPlayers = newList;
 
-        for (let i = 1; i < 2; i++) {
+        for (let i = 1; i < localNumObts; i++) {
             console.log("ok ", players);
             let rand = Math.floor(Math.random() * players.length);
             while (selectedRands.includes(rand)) {
@@ -85,6 +88,7 @@ function Game(props) {
             <Category
                 category={category} showCat={showCat}
                 setShowCat={setShowCat}
+                numObt={localNumObts}
                 nextAction={() => {
                     randSubject();
                     randObtrusive();

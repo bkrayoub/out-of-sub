@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Vote({ showVote, setShowVote, players, setPlayers, setShowResult }) {
+function Vote({ showVote, setShowVote, players, setPlayers, setShowResult, localNumObts }) {
 
     const [index, setIndex] = useState(0);
     useEffect(() => {
@@ -32,11 +32,10 @@ function Vote({ showVote, setShowVote, players, setPlayers, setShowResult }) {
             // const kicked = players.filter((item)=>item.is)
             playersList = playersList.sort((a, b) => { return b.votes - a.votes });
             let obstrusivesWon = false;
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < localNumObts; i++) {
                 if (!playersList[i].isObtrusive) {
                     obstrusivesWon = true;
                 }
-
             }
             if (obstrusivesWon) {
                 playersList = playersList.map((item) => {
@@ -64,11 +63,11 @@ function Vote({ showVote, setShowVote, players, setPlayers, setShowResult }) {
 
     if (showVote) {
         return (
-            <div>
-                <h2>{players[index].name} can Vote</h2>
+            <div className="gameContainer">
+                <h2 className="title">{players[index].name} can Vote</h2>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
                     {players.map((item, i) => {
-                        return <button style={{ border: "5px", color: "black" }}
+                        return <button className="nextBtn" style={{ border: "5px", color: "black" }}
                             onClick={() => handleVote(item)}
                         >
                             {item.name}
