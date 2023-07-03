@@ -10,6 +10,15 @@ body{
 #test {
     font-size: 200px;
 }
+#list {
+    position: relative;
+}
+.slid-r{
+    transition: .33s ease-out;
+}
+.slid-r:hover {
+    padding-left: 20px;
+}
 .containera {
     overflow: hidden;
     border: 5px solid #f8dcff;
