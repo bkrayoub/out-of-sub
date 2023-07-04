@@ -27,18 +27,9 @@ export class FirebaseService {
 
     async getRoom(roomCode) {
         if (roomCode) {
-
-            let data = false;
             let res = (await get(child(ref(getDatabase()), '/rooms/' + roomCode))).val();
             console.log(res);
             return res;
-            // if (snapshot.exists()) {
-            //     data = snapshot.val();
-            //     console.log(data);
-            // }
-
-            // return data;
-
         }
     }
 

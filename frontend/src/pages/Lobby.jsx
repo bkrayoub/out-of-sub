@@ -76,7 +76,7 @@ export default function Lobby() {
                         <p>Host</p>
                     </Link>
         
-                    <a href="#">
+                    <a href="/join">
                         <div>
                             <img src=""/>
                         </div>

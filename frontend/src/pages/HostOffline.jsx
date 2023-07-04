@@ -33,7 +33,7 @@ export default function HostOffline() {
             console.error(categories);
         }
     };
-    /*-------------------------- select all subjects of selected category  --------------------------*/
+    /*-------------------------- select all subjects of selected category --------------------------*/
     const [subCategories, setSubCategories] = useState([]);
     useEffect(() => {
         fetchSubcategies();

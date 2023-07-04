@@ -9,10 +9,11 @@ import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 import Splashcreen from "./pages/Splashcreen";
 import Host from "./pages/Host";
+import Join from "./pages/Join";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
-import Game from "./pages/Game/Game";
 import OnlineGame from "./pages/OnlineGame/OnlineGame";
+import Game from "./pages/Game/Game";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path: '/host',
                 element: <Host />
+            },
+            {
+                path: '/join',
+                element: <Join />
             },
         ]
 
