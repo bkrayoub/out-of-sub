@@ -69,12 +69,12 @@ export default function Lobby() {
             <div onClick={onlineCardsHide} className="onlineSection" style={{position: 'absolute', top: onlineSectionPos}}>
                 <img src={logoImage} />
                 <div className="cards">
-                    <a href="#">
+                    <Link to="/host">
                         <div>
                             <img src=""/>
                         </div>
                         <p>Host</p>
-                    </a>
+                    </Link>
         
                     <a href="#">
                         <div>

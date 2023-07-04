@@ -11,7 +11,7 @@ function Credit(props) {
                 <h4>
                     Hi it's mohamed the dev who made this project i hope you enjoyed playing my game.
                     <br/>
-                    if you want to know more about me or my additional project you can check out this links:
+                    if you want to know more about me or my additional projects you can check out this links:
                 </h4>
                 <div id='credit-links'>
                     <a target="_blank" href="https://github.com/bkrayoub">Github  -</a>
