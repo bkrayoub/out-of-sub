@@ -1,4 +1,4 @@
-body{
+body {
     padding: 0px;
     height: 100vh;
     display: flex;
@@ -7,16 +7,18 @@ body{
     background-image: url(../image/bgbg.png);
 
 }
+
 * {
     font-family: glossyRegular;
     outline: none;
- 
+
 }
-.container_ho {
+
+.container_ho_on {
     border: 5px solid #f8dcff;
-    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
-    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
-    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
     border-radius: 20px;
     background-image: url(../image/bgg.png);
     background-size: cover;
@@ -30,14 +32,16 @@ body{
     justify-content: space-evenly;
     overflow: hidden;
 }
-.container_ho .addPlayerBackground>#close{
+
+.container_ho_on .addPlayerBackground>#close {
     position: absolute;
     right: 9vw;
     cursor: pointer;
-    color:#4C00AC;
-    
+    color: #4C00AC;
+
 }
-.container_ho .addPlayerBackground {
+
+.container_ho_on .addPlayerBackground {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -50,7 +54,8 @@ body{
     background: rgba(113, 113, 113, 0.47);
     backdrop-filter: blur(25px);
 }
-.container_ho .addPlayerContainer {
+
+.container_ho_on .addPlayerContainer {
     background-image: url(../image/addContainer.png);
     background-repeat: no-repeat;
     background-size: contain;
@@ -61,7 +66,8 @@ body{
     align-items: center;
     justify-content: space-evenly;
 }
-.container_ho .addPlayerContainer input {
+
+.container_ho_on .addPlayerContainer input {
     width: 250px;
     height: 55px;
     border-radius: 100px;
@@ -70,9 +76,10 @@ body{
     font-weight: 400;
     text-align: center;
     padding: 0px 50px;
-    outline:none ;
+    outline: none;
 }
-.container_ho .addPlayerContainer button {
+
+.container_ho_on .addPlayerContainer button {
     background-color: white;
     border: 0px;
     width: 169px;
@@ -80,29 +87,38 @@ body{
     transition: .33s;
     border-radius: 100px;
     cursor: pointer;
-    box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
-    -webkit-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
-    -moz-box-shadow: 0px 0px 36px -7px rgba(255,52,223,0.8);
+    box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
+    -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
+    -moz-box-shadow: 0px 0px 36px -7px rgba(255, 52, 223, 0.8);
     background-image: url(../image/add2.png);
     background-repeat: no-repeat;
     background-size: cover;
 }
-.container_ho .addPlayerContainer button:hover { 
+
+.container_ho_on .addPlayerContainer button:hover {
     box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
     -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
     -moz-box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
 }
-.container_ho .left table {
-    padding: 30px 20px;
-    background-image: url(../image/playersTable.png);
+
+.container_ho_on .left table {
+    padding: 50px 20px;
+    /* background-image: url(../image/playersTable.png); */
     background-repeat: no-repeat;
     background-size: contain;
-    width: 335px;
-    height: 450px;
+    background-color: #DDAEF7;
+    box-shadow: 
+        inset 0px 11px 0px 0px #E9C3FF,
+        inset 0px -11px 0px 0px #CD7BFB; 
+    border-radius: 40px;
+    width: 330px;
+    height: 448px;
     text-align: center;
-
+    position: relative;
+    z-index: 99;
 }
-.container_ho .left table thead {
+
+.container_ho_on .left table thead {
     margin-bottom: 10px;
     display: grid;
     grid-template-rows: 1fr;
@@ -110,14 +126,16 @@ body{
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
-.container_ho .left table tbody tr{
+
+.container_ho_on .left table tbody tr {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
-.container_ho .left table tbody {
+
+.container_ho_on .left table tbody {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(10, 1fr);
@@ -125,16 +143,21 @@ body{
     grid-row-gap: 0px;
 }
 
-.container_ho .deletePlayer {
+.container_ho_on .deletePlayer {
     color: red;
     cursor: pointer;
 }
-.container_ho .right {
+
+.container_ho_on .right {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.container_ho .hostoperation {
+.container_ho_on .right>h1 {
+    font-size: 22px;
+}
+
+.container_ho_on .hostoperation {
     width: 357px;
     height: 200px;
     background-image: url(../image/hostoperation.png);
@@ -146,39 +169,45 @@ body{
     align-items: center;
     justify-content: center;
     text-align: center;
+    position: relative;
 }
-.container_ho select {
+.container_ho_on select {
     height: 30px;
     border-radius: 100px;
     border: 2px solid #4C00AC;
     text-align: center;
 }
-.container_ho .buttons {
+
+.container_ho_on .buttons {
     width: 100%;
     display: flex;
     justify-content: space-around;
 }
-.container_ho .buttons img {
+
+.container_ho_on .buttons img {
     cursor: pointer;
     width: 120px;
 }
-.container_ho .hostoperation p {
+
+.container_ho_on .hostoperation p {
     margin: 10px;
 }
-.container_ho .hostoperation div {
+
+.container_ho_on .hostoperation div {
     margin-bottom: 10px;
 }
 
-.container_ho .addPlayerBackground{
+.container_ho_on .addPlayerBackground {
     /* animation: slideIn .5s cubic-bezier(0.19, 1, 0.22, 1); */
     transition: all .5s;
 }
 
 @keyframes slideIn {
-    0%{
+    0% {
         translate: -100% 0%;
     }
-    100%{
+
+    100% {
         translate: 0% 0%;
     }
 }

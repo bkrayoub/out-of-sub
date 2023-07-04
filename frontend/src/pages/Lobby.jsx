@@ -40,11 +40,11 @@ export default function Lobby() {
             <div className="left">
                 <img src={logoImage}/>
                 <div id='list'>
-                    <p href="" style={{"color":"#7DFFA9"}} onClick={onlineCardsShow}>Online</p>
-                    <Link to="/create_offline_room" style={{"color":"#FF7D7D"}}>Offline</Link>
-                    <a href="">Setting</a>
-                    <Link to="/credit">Credit</Link>
-                    <Link to="#" onClick={onLogout}>Log Out</Link>
+                    <p href="" style={{"color":"#7DFFA9"}} onClick={onlineCardsShow} className="slid-r">Online</p>
+                    <Link to="/create_offline_room" style={{"color":"#FF7D7D"}} className="slid-r">Offline</Link>
+                    <a href="" className="slid-r">Setting</a>
+                    <Link to="/credit" className="slid-r">Credit</Link>
+                    <Link to="#" onClick={onLogout} className="slid-r">Log Out</Link>
                 </div>
             </div>
 
@@ -69,12 +69,12 @@ export default function Lobby() {
             <div onClick={onlineCardsHide} className="onlineSection" style={{position: 'absolute', top: onlineSectionPos}}>
                 <img src={logoImage} />
                 <div className="cards">
-                    <a href="#">
+                    <Link to="/host">
                         <div>
                             <img src=""/>
                         </div>
                         <p>Host</p>
-                    </a>
+                    </Link>
         
                     <a href="#">
                         <div>

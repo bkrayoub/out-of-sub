@@ -8,6 +8,7 @@ import LogIn from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 import Splashcreen from "./pages/Splashcreen";
+import Host from "./pages/Host";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
 import Game from "./pages/Game/Game";
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: '/edit_profile',
                 element: <EditAcc />
+            },
+            {
+                path: '/host',
+                element: <Host />
             },
         ]
 
