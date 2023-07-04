@@ -11,6 +11,7 @@ import Splashcreen from "./pages/Splashcreen";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
 import Game from "./pages/Game/Game";
+import OnlineGame from "./pages/OnlineGame/OnlineGame";
 
 const router = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
     {
         path: '/credit',
         element: <Credit />
+    },
+    {
+        path: '/online-game',
+        element: <OnlineGame />
     },
     {
         path: '*',

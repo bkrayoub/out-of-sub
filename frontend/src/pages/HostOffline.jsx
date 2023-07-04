@@ -6,7 +6,10 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 
 
+
 export default function HostOffline() {
+
+
     /*-------------------------- show and hide add div --------------------------*/
     const [show, setShow] = useState(false);
     const [numObt, setNumObt] = useState(1);
