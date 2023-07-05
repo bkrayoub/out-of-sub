@@ -92,13 +92,6 @@ export default function EditAcc() {
               <button type='submit' id='submit'>
               </button>
             </div>
-          </div>
-
-          <div className="right">
-            <div id="pfpInput">
-              <input type="file" name="" id="pfp" />
-            </div>
-
             <div className="botona">
               <button id="delete" onClick={handleDestroyAcc}>
               </button>

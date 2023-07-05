@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
 import '../style/geustlobby.css';
 import logoImage from '../image/logo.png'
 import { Link, Navigate } from 'react-router-dom';
 import { useStateContext } from '../contexts/ContextProvider.jsx'
 
-function Guestlobby(props) {
+function Guestlobby() {
 
-    const [guestName, setGuestName] = useState('test-demo');
+    const [guestName, setGuestName] = useState('');
+    useEffect(()=> {
+        const localUser = localStorage.getItem('geustUsers')
+        setGuestName(localUser)
+    },[])
+    const updateGuestName = (e)=>{
+        const newUsername = e.target.value
+        setGuestName(newUsername)
+        localStorage.setItem("geustUsers", newUsername);
+        console.log(guestName);
+    }
+    
+
+
+
     const { token, user } = useStateContext()
     if (token) {
         return <Navigate to='/lobby' />
@@ -36,7 +50,7 @@ function Guestlobby(props) {
                     <input
                         type="text"
                         value={guestName}
-                        onChange={(e) => setGuestName(e.target.value)}
+                        onChange={updateGuestName}
                     />
 
                     <br />

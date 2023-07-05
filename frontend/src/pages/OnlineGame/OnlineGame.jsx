@@ -20,7 +20,7 @@ function OnlineGame() {
             <button onClick={() => {
                 firebase.addPlayer(roomCode, user);
             }}>join</button>
-            <button className="ml-5" onClick={() => firebase.initRoom("okokok", "")}>create new</button>
+            <button className="ml-5" onClick={() => firebase.initRoom("okokok", "", user)}>create new</button>
         </div>
     )
 }

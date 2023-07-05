@@ -16,13 +16,15 @@ export class FirebaseService {
     app = initializeApp(this.firebaseConfig);
     db = getDatabase(this.app);
 
-    initRoom(roomCode, password) {
+    initRoom(roomCode, password, player) {
         const roomRef = ref(this.db, 'rooms/' + roomCode);
 
         set(roomRef, {
             code: roomCode,
             password: password
         });
+
+        this.addPlayer(roomCode, player);
     }
 
     async getRoom(roomCode) {
@@ -33,8 +35,8 @@ export class FirebaseService {
         }
     }
 
-    addPlayer(roomCode, player) {
-        const roomExists = this.getRoom(roomCode);
+    async addPlayer(roomCode, player) {
+        const roomExists = await this.getRoom(roomCode);
         console.log(roomExists);
         if (roomExists) {
             const playerRef = ref(this.db, 'rooms/' + roomCode + '/players/' + player.id);

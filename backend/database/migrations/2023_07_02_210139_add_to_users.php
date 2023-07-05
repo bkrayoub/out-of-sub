@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('level');
-            $table->string('photo');
+            $table->integer('level')->default(0);
+            $table->string('photo')->default("default.png");
         });
     }
 
