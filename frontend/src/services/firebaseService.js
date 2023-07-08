@@ -45,9 +45,11 @@ export class FirebaseService {
                 score: player.score || 0
             });
             onDisconnect(playerRef).remove();
+            return "success";
         }
         else {
             alert("room doesn't exist!");
+            return "fail";
         }
     }
 
@@ -62,5 +64,14 @@ export class FirebaseService {
         onDisconnect(query).remove();
 
         return data;
+    }
+
+    async getPlayers(roomCode) {
+        return new Promise((resolve, reject) => {
+            const query = ref(this.db, '/rooms/' + roomCode + '/players');
+            onValue(query, (snapshot) => {
+                resolve(snapshot.val());
+            })
+        })
     }
 }

@@ -9,7 +9,7 @@ import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 import Splashcreen from "./pages/Splashcreen";
 import Host from "./pages/Host";
-import Join from "./pages/Join";
+import Join from "./pages/OnlineGame/Join";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
 import OnlineGame from "./pages/OnlineGame/OnlineGame";
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
         element: <Credit />
     },
     {
-        path: '/online-game',
+        path: '/online-game/:code',
         element: <OnlineGame />
     },
     {

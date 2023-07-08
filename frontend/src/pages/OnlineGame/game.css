@@ -1,0 +1,32 @@
+.online-game .left table {
+    padding: 30px 20px;
+    background-image: url(../../image/playersTable.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 335px;
+    height: 450px;
+    text-align: center;
+
+}
+.online-game .left table thead {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.online-game .left table tbody tr{
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.online-game .left table tbody {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
