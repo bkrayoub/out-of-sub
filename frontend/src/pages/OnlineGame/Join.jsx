@@ -1,14 +1,10 @@
 import '../../style/join.css';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import switchOn from '../../image/switch-on.png'
 import switchOff from '../../image/switch-off.png'
 import { FirebaseService } from '../../services/firebaseService';
 import { useStateContext } from '../../contexts/ContextProvider';
-
-
-
-
 
 export default function Join() {
     const [code, setCode] = useState()
@@ -16,16 +12,18 @@ export default function Join() {
     const [showPassInp, setShowPassInp] = useState(true);
     const { user, token, setToken, setUser } = useStateContext();
 
+    const navigate = useNavigate();
+
     const firebase = new FirebaseService();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const res = await firebase.getRoom(code);
         if (res) {
-            window.location.href = "/online-game/" + code;
+            navigate("/room/" + code);
         }
         else {
-            alert("awili")
+            alert("awili");
         }
     }
 

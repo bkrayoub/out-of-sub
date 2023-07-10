@@ -3,14 +3,18 @@ import { useState } from "react";
 import '../style/lobby.css';
 import logoImage from '../image/logo.png'
 import pfp_demo from '../image/pfp-demo.png'
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 import axios from 'axios';
+import { FirebaseService } from '../services/firebaseService';
 
 export default function Lobby() {
     const [centerWidth, setCenterWidth] = useState('0px')
     const [onlineSectionPos, setOnlineSectionPos] = useState('-100%')
-    const { user, token, setToken, setUser } = useStateContext()
+    const { user, token, setToken, setUser } = useStateContext();
+    const navigate = useNavigate();
+
+    const firebase = new FirebaseService();
 
     const onlineCardsShow = () => {
         setCenterWidth('700px')
@@ -30,9 +34,25 @@ export default function Lobby() {
                 setToken(null);
             })
     }
-useEffect(()=>{
-    console.log("user is :", user);
-})
+    const handleHost = async () => {
+        let codeLength = 6;
+        let result = '';
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const charactersLength = characters.length;
+        let counter = 0;
+        while (counter < codeLength) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+            counter += 1;
+        }
+        const res = await firebase.initRoom(result, "", user);
+        console.log(res);
+        if (res === "success") {
+            navigate("/room/" + result)
+        }
+    }
+    useEffect(() => {
+        console.log("user is :", user);
+    })
     return (
         <>
             <div className='container_lobby'>
@@ -68,12 +88,12 @@ useEffect(()=>{
                 <div onClick={onlineCardsHide} className="onlineSection" style={{ position: 'absolute', top: onlineSectionPos }}>
                     <img src={logoImage} />
                     <div className="cards">
-                        <Link to="/host">
+                        <a className='cursor-pointer' onClick={handleHost}>
                             <div>
                                 <img src="" />
                             </div>
                             <p>Host</p>
-                        </Link>
+                        </a>
 
                         <a href="/join">
                             <div>
@@ -82,7 +102,7 @@ useEffect(()=>{
                             <p>Join</p>
                         </a>
 
-                        <a href="#">
+                        <a href="/find">
                             <div>
                                 <img src="" />
                             </div>

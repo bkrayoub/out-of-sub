@@ -45,7 +45,7 @@ export default function LogIn() {
                 <h1>Login into your account</h1>
                 <div className='loginForm'>
                     <input
-                    type="email"
+                    type="text"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                      />

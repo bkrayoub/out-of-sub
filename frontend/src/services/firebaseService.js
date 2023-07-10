@@ -1,4 +1,4 @@
-import { child, get, getDatabase, onDisconnect, onValue, ref, set } from 'firebase/database';
+import { child, get, getDatabase, onDisconnect, onValue, ref, remove, set } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
 
 export class FirebaseService {
@@ -16,23 +16,65 @@ export class FirebaseService {
     app = initializeApp(this.firebaseConfig);
     db = getDatabase(this.app);
 
-    initRoom(roomCode, password, player) {
+    async initRoom(roomCode, password, player) {
         const roomRef = ref(this.db, 'rooms/' + roomCode);
 
         set(roomRef, {
             code: roomCode,
-            password: password
+            password: password,
+            ownerID: player.id
+        }).then((res) => {
+            return "added"
+        }).catch((err) => {
+            console.log(err);
         });
 
-        this.addPlayer(roomCode, player);
+        const res = await this.addPlayer(roomCode, player);
+        return res;
     }
-
+    async getRooms(setRooms) {
+        return new Promise((resolve, reject) => {
+            const query = ref(this.db, '/rooms/');
+            onValue(query, (snapshot) => {
+                let data = [];
+                console.log(snapshot.val());
+                let res = snapshot.val();
+                for(let x in res){
+                    data.push(res[x]);
+                }
+                console.log("snapshot is :", data);
+                setRooms(data);
+                resolve(data);
+                
+            })
+            // onDisconnect(query).set()
+        })
+    }
     async getRoom(roomCode) {
         if (roomCode) {
+            let data;
+            // const query = ref(this.db, '/rooms/' + roomCode);
             let res = (await get(child(ref(getDatabase()), '/rooms/' + roomCode))).val();
             console.log(res);
             return res;
+            // const getData = onValue(query, (snapshot) => {
+            //     data = snapshot.val();
+            //     console.log(data.players);
+            // if (!data.players) {
+            //     // snapshot.remove()
+
+            // }
+            // })
+            // getData();
+            return data;
         }
+    }
+
+    removeRoom(roomCode) {
+        const query = ref(this.db, '/rooms/' + roomCode);
+        remove(query).then(() => {
+            console.log("deleted!");
+        });
     }
 
     async addPlayer(roomCode, player) {
@@ -41,6 +83,7 @@ export class FirebaseService {
         if (roomExists) {
             const playerRef = ref(this.db, 'rooms/' + roomCode + '/players/' + player.id);
             set(playerRef, {
+                id: player.id,
                 name: player.name,
                 score: player.score || 0
             });
@@ -66,11 +109,19 @@ export class FirebaseService {
         return data;
     }
 
-    async getPlayers(roomCode) {
+    async getPlayers(roomCode, setPlayers) {
         return new Promise((resolve, reject) => {
             const query = ref(this.db, '/rooms/' + roomCode + '/players');
             onValue(query, (snapshot) => {
                 resolve(snapshot.val());
+                let data = [];
+                let res = snapshot.val();
+                for(let x in res){
+                    data.push(res[x]);
+                }
+                console.log("snapshot is :", data);
+                setPlayers(data);
+                return data;
             })
         })
     }

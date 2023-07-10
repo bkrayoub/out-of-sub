@@ -9,11 +9,13 @@ import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
 import Splashcreen from "./pages/Splashcreen";
 import Host from "./pages/Host";
+import Find from "./pages/Find";
 import Join from "./pages/OnlineGame/Join";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
 import OnlineGame from "./pages/OnlineGame/OnlineGame";
 import Game from "./pages/Game/Game";
+
 
 const router = createBrowserRouter([
     {
@@ -33,12 +35,16 @@ const router = createBrowserRouter([
                 element: <EditAcc />
             },
             {
-                path: '/host',
+                path: '/room/:code',
                 element: <Host />
             },
             {
                 path: '/join',
                 element: <Join />
+            },
+            {
+                path: '/find',
+                element: <Find />
             },
         ]
 

@@ -3,41 +3,18 @@ import '../style/host.css';
 import addImage from '../image/add.png';
 import startImage from '../image/start.png';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate, useParams } from 'react-router-dom';
+import { FirebaseService } from '../services/firebaseService';
+import { useStateContext } from '../contexts/ContextProvider';
 
 function Host() {
 
     /*-------------------------- Generate room code --------------------------*/
-    const [roomCode, setRoomCode] = useState('')
+    const [room, setRoom] = useState({});
 
-useEffect(()=>{
-    generateRoomCode()
-},[])
-
-const generateRoomCode = () => {
-    let codeLength = 6
-    let result = '';
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    let counter = 0;
-    while (counter < codeLength) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        counter += 1;
-    }
-    setRoomCode(result)
-    console.log(roomCode);
-    return result
-}
-
-
-
-
-
-
-
-
-
-
+    const { user, token, setToken, setUser } = useStateContext();
+    const [userLoaded, setLoaded] = useState(false);
+    const [players, setPlayers] = useState([]);
 
     /*-------------------------- show and hide add div --------------------------*/
     const [show, setShow] = useState(false);
@@ -47,10 +24,55 @@ const generateRoomCode = () => {
     /*-------------------------- select all categories to list them --------------------------*/
     const [categories, setCategory] = useState({});
     const [selectedCategory, setSelectedCategory] = useState("");
+    let count = 1;
+    const params = useParams();
+    const code = params.code;
+    const firebase = new FirebaseService();
+
+    useEffect(() => {
+        const gettingRoom = async () => {
+            console.log("code is ", code);
+            const getRoom = await firebase.getRoom(code);
+            console.log(getRoom);
+            setRoom(getRoom);
+        }
+        gettingRoom();
+    }, []);
+
+    useEffect(() => {
+        console.log("room is ", room);
+    }, [room]);
+
+    useEffect(() => {
+        const addPlayer = async () => {
+            if (user.id) {
+                const res = await firebase.addPlayer(code, user);
+                if (res === "success") {
+                    const getPlayers = await firebase.getPlayers(code, setPlayers);
+                    console.log(getPlayers);
+                }
+                else {
+                    alert("awili")
+                }
+            }
+        }
+        addPlayer();
+    }, [userLoaded]);
+
+    useEffect(() => {
+        if (user.id && !userLoaded) {
+            setLoaded(true);
+        }
+    }, [user]);
+
 
     useEffect(() => {
         fetchCategories();
     }, []);
+
+    useEffect(()=>{
+        console.log(players);
+    }, [players])
 
     const fetchCategories = async () => {
         try {
@@ -79,96 +101,30 @@ const generateRoomCode = () => {
     };
 
 
-    /*-------------------------- store players from local storage --------------------------*/
-    const [player, setAddPlayer] = useState('');
-    let currentPlayers = JSON.parse(localStorage.getItem("localPlayers"));
-    if (!currentPlayers) {
-        currentPlayers = [];
-    }
-    const [players, setPlayers] = useState(currentPlayers);
-    if (!localStorage.getItem("currentID")) {
-        localStorage.setItem("currentID", 1)
-    }
-    const currentID = JSON.parse(localStorage.getItem("currentID"));
-    const [playersID, setPlayersID] = useState(currentID);
-
-
-    /*-------------------------- add player to local storage --------------------------*/
-    const handleAddition = async (e) => {
-        e.preventDefault();
-        setPlayers((old) => {
-            const newPlayer = { "name": player, "id": playersID };
-            return [...old, newPlayer];
-        });
-        setPlayersID(playersID + 1);
-    };
-    useEffect(() => {
-        const localPlayers = localStorage.getItem("localPlayers");
-        if (localPlayers) {
-            const json = JSON.parse(localPlayers);
-            setPlayers(json);
-        }
-    }, []);
-
-
-    /*-------------------------- Update Local Storage whenever "players" is changed --------------------------*/
-    useEffect(() => {
-        const PlayersJson = JSON.stringify(players);
-        localStorage.setItem("localPlayers", PlayersJson);
-        if (players.length <= 0) {
-            setPlayersID(1);
-        }
-    }, [players]);
-
-
-    /*-------------------------- set id to next player --------------------------*/
-    useEffect(() => {
-        localStorage.setItem("currentID", playersID);
-    }, [playersID]);
-
-
-    /*-------------------------- delete player from local storage --------------------------*/
-    const handleDelete = async (id) => {
-        setPlayers(players.filter((player) => player.id !== id));
-    };
-
-
-
-
     return (
         <div className="container_ho_on">
             <Link to='/lobby' style={{ "position": "absolute", "color": "white", "left": "50px", "top": "30px" }}><h1>Back</h1></Link>
-            {show ? <div className='addPlayerBackground' style={{ translate: show ? "0% 0%" : "-100% 0" }}>
-                <button id='close' onClick={() => setShow(false)}>Close</button>
-                <form onSubmit={handleAddition} className='addPlayerContainer' id='addPlayer'>
-                    <input
-                        type='text'
-                        value={player}
-                        onChange={(e) => setAddPlayer(e.target.value)}
-                    />
-                    <button></button>
-                </form>
-            </div> : ""}
             <div className="left">
                 <table>
                     <thead>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Operator</th>
+                        {(room && room.ownerID === user.id) ? <th>Operator</th> : ""}
                     </thead>
                     <tbody>
-                        {players.map((player, index) => (
+                        {players.map((player) => (
                             <tr>
-                                <td>{index + 1}</td>
-                                <td>{player.name}</td>
-                                <td className='deletePlayer' onClick={() => handleDelete(player.id)}>delete</td>
+                                <td>{count++}</td>
+                                <td>{player.id === user.id ? "You" : player.name}</td>
+                                {(room && room.ownerID === user.id) ? <td className='deletePlayer'>delete</td> : ""}
+
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
             <div className="right">
-                <h1>Room Code: <spane>{roomCode}</spane></h1>
+                <h1>Room Code: <spane>{code}</spane></h1>
                 <div className="hostoperation">
                     <div>
                         <p>category</p>
@@ -195,7 +151,6 @@ const generateRoomCode = () => {
                     </div>
                 </div>
                 <div className="buttons">
-                    <img alt='' src={addImage} onClick={() => setShow(true)} />
                     <img alt='' src={addImage} onClick={() => {
                         setPlayers([]);
                     }} />

@@ -22,8 +22,7 @@ function OnlineGame() {
             if (user.id) {
                 const res = await firebase.addPlayer(code, user);
                 if (res === "success") {
-                    const getPlayers = await firebase.getPlayers(code);
-                    setPlayers(getPlayers);
+                    const getPlayers = await firebase.getPlayers(code, setPlayers);
                     console.log(getPlayers);
                 }
                 else {
@@ -38,7 +37,7 @@ function OnlineGame() {
         if (user.id && !userLoaded) {
             setLoaded(true);
         }
-    }, [user])
+    }, [user]);
 
     return (
         <div className="online-game">
@@ -56,7 +55,7 @@ function OnlineGame() {
                         {players.map((player) => (
                             <tr>
                                 <td>{count++}</td>
-                                <td>{player.name}</td>
+                                <td>{player.id === user.id ? "You" : player.name}</td>
                                 <td className='deletePlayer'>delete</td>
                             </tr>
                         ))}
