@@ -9,7 +9,7 @@ export default function Find() {
     const navigate = useNavigate();
 
     const [rooms, setRooms] = useState([]);
-    
+
     useEffect(() => {
         const gettingRooms = async () => {
             const getRoom = await firebase.getRooms(setRooms);
@@ -17,35 +17,35 @@ export default function Find() {
             console.log(getRoom);
         }
         gettingRooms();
-        console.log("kayjib ",rooms);
+        console.log("kayjib ", rooms);
     }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log("rooms are : ", rooms);
-    },[rooms])
+    }, [rooms])
 
 
     return (
         <>
-        <button onClick={()=>{navigate(-1)}}>Back</button>
-        <table>
-            <thead>
-                <th>#</th>
-                <th>Room code</th>
-                <th>Category</th>
-                <th>Operator</th>
-            </thead>
-        {rooms.map((room, index)=> {
-                return <tr>
-                    <td>{index+1}</td>
-                    <td>{room.code}</td>
-                    <td>baaaaarcaaaa</td>
-                    <td>
-                        <Link to={"/room/" + room.code}>Join</Link>
-                    </td>
-                </tr>
-            })}
-        </table>
+            <button onClick={() => { navigate(-1) }}>Back</button>
+            <table>
+                <thead>
+                    <th>#</th>
+                    <th>Room code</th>
+                    <th>Category</th>
+                    <th>Operator</th>
+                </thead>
+                {rooms.map((room, index) => {
+                    return <tr>
+                        <td>{index + 1}</td>
+                        <td>{room.code}</td>
+                        <td>baaaaarcaaaa</td>
+                        <td>
+                            <Link to={"/room/" + room.code}>Join</Link>
+                        </td>
+                    </tr>
+                })}
+            </table>
         </>
     )
 }

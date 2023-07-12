@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 import axios from 'axios';
 import { FirebaseService } from '../services/firebaseService';
+import MessageAlert from '../components/MessageAlert';
 
 export default function Lobby() {
     const [centerWidth, setCenterWidth] = useState('0px')
@@ -55,6 +56,7 @@ export default function Lobby() {
     })
     return (
         <>
+            <MessageAlert message={"hi"} />
             <div className='container_lobby'>
                 <div className="left">
                     <img src={logoImage} />

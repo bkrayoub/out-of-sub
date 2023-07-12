@@ -3,7 +3,7 @@ import '../style/host.css';
 import addImage from '../image/add.png';
 import startImage from '../image/start.png';
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes, Link, Navigate, useParams } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate, useParams, useNavigate } from 'react-router-dom';
 import { FirebaseService } from '../services/firebaseService';
 import { useStateContext } from '../contexts/ContextProvider';
 
@@ -15,6 +15,7 @@ function Host() {
     const { user, token, setToken, setUser } = useStateContext();
     const [userLoaded, setLoaded] = useState(false);
     const [players, setPlayers] = useState([]);
+    const [gameStarted, setGameStarted] = useState(false);
 
     /*-------------------------- show and hide add div --------------------------*/
     const [show, setShow] = useState(false);
@@ -24,16 +25,26 @@ function Host() {
     /*-------------------------- select all categories to list them --------------------------*/
     const [categories, setCategory] = useState({});
     const [selectedCategory, setSelectedCategory] = useState("");
+
+    const navigate = useNavigate();
+
     let count = 1;
     const params = useParams();
     const code = params.code;
     const firebase = new FirebaseService();
 
+    useEffect(()=>{
+        if(room.started){
+
+            navigate("/game/"+ room.code);
+        }
+    }, [room])
+
     useEffect(() => {
         const gettingRoom = async () => {
             console.log("code is ", code);
             const getRoom = await firebase.getRoom(code);
-            console.log(getRoom);
+            console.log("rooooom",getRoom);
             setRoom(getRoom);
         }
         gettingRoom();
@@ -70,7 +81,7 @@ function Host() {
         fetchCategories();
     }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(players);
     }, [players])
 
@@ -89,6 +100,11 @@ function Host() {
     useEffect(() => {
         fetchSubcategies();
     }, []);
+
+    useEffect(()=>{
+        console.log(room);
+    }, [room])
+
     const fetchSubcategies = async () => {
         try {
             const response = await axios.get('http://127.0.0.1:8000/api/getSubjects/' + categories.id);
@@ -114,7 +130,12 @@ function Host() {
                     <tbody>
                         {players.map((player) => (
                             <tr>
-                                <td>{count++}</td>
+                                <td className='flex items-center justify-center gap-2'>
+                                    <div className={'w-2 h-2 rounded-[50%] '
+                                        + (player.state === 'online' ? 'bg-[#0f0]' : 'bg-[#f00]')}
+                                    />
+                                    <span>{count++}</span>
+                                </td>
                                 <td>{player.id === user.id ? "You" : player.name}</td>
                                 {(room && room.ownerID === user.id) ? <td className='deletePlayer'>delete</td> : ""}
 
@@ -154,12 +175,12 @@ function Host() {
                     <img alt='' src={addImage} onClick={() => {
                         setPlayers([]);
                     }} />
-                    <img alt='' src={startImage} className="button" onClick={() => {
-                        localStorage.setItem("category", selectedCategory);
-                        localStorage.setItem("numObts", numObt);
-                        console.log("selectedCategory ", selectedCategory);
-                        window.location.href = '/startGame';
-                    }} />
+                    {room.ownerID === user.id ? <img alt='' src={startImage} className="button" onClick={() => {
+                        firebase.updateRoom(room.code, {started: true})
+                        setRoom((old)=>{
+                            return {...old, started: true}
+                        })
+                    }} /> : ''}
                 </div>
             </div>
         </div>
