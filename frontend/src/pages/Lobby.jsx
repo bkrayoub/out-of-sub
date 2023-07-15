@@ -57,7 +57,7 @@ export default function Lobby() {
     if (user.photo) {
     return (
         <>
-            <MessageAlert message={"hi"} />
+            {/* <MessageAlert message={"hi"} /> */}
             <div className='container_lobby'>
                 <div className="left">
                     <img src={logoImage} />
