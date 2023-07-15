@@ -1,0 +1,37 @@
+.messageAlert {
+    width: 500px;
+    z-index: 9999;
+    background-color: #DDAEF7;
+    box-shadow:
+        inset 0px 5px 0px 0px #E9C3FF,
+        inset 0px -5px 0px 0px #CD7BFB;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    transition: .5s ease-out;
+    padding: 30px;
+    animation: messageAlert 10s ease-out;
+    animation-iteration-count: 1;
+}
+
+@keyframes messageAlert {
+    0% {
+        top: -200px;
+    }
+
+    10% {
+        top: 20px;
+    }
+
+    90% {
+        top: 20px;
+    }
+
+    100% {
+        top: -200px;
+    }
+}

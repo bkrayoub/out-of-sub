@@ -12,6 +12,7 @@ export default function Find() {
 
     const [rooms, setRooms] = useState([]);
 
+
     useEffect(() => {
         const gettingRooms = async () => {
             const getRoom = await firebase.getRooms(setRooms);
@@ -20,10 +21,13 @@ export default function Find() {
         }
         gettingRooms();
         console.log("kayjib ", rooms);
+        console.log("kayjib ", rooms);
     }, []);
 
     useEffect(() => {
+    useEffect(() => {
         console.log("rooms are : ", rooms);
+    }, [rooms])
     }, [rooms])
 
 

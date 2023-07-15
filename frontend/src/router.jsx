@@ -15,6 +15,7 @@ import Join from "./pages/OnlineGame/Join";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
 import OnlineGame from "./pages/OnlineGame/OnlineGame";
+import MatchRoom from "./pages/OnlineGame/matchRoom";
 import Game from "./pages/Game/Game";
 
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: '/find',
                 element: <Find />
+            },
+            {
+                path: '/game/:code',
+                element: <MatchRoom />
             },
         ]
 
