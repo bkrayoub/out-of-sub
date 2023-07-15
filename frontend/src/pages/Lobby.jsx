@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from "react";
 import '../style/lobby.css';
 import logoImage from '../image/logo.png'
-import pfp_demo from '../image/pfp-demo.png'
+import editIcon from '../image/editIcon.svg'
 import { Link, useNavigate } from 'react-router-dom';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 import axios from 'axios';
@@ -53,6 +53,7 @@ export default function Lobby() {
     useEffect(() => {
         console.log("user is :", user);
     })
+    if (user.photo) {
     return (
         <>
             <div className='container_lobby'>
@@ -73,11 +74,13 @@ export default function Lobby() {
                     <div id="pfp-card">
                         <img src={"/images/" + user.photo} />
                         <p>{user.name}</p>
-                        <p>level:</p>
+                        <p>level: <span>{user.level}</span> </p>
                         <div id="level-line">
                             <div id="level-line-fill"></div>
                         </div>
-                        <Link to="/edit_profile">edit</Link>
+                        <Link to="/edit_profile" className='edit'>
+                            <img src={editIcon}/>
+                        </Link>
                     </div>
 
                     <div className="news">News</div>
@@ -85,7 +88,8 @@ export default function Lobby() {
 
 
 
-                <div onClick={onlineCardsHide} className="onlineSection" style={{ position: 'absolute', top: onlineSectionPos }}>
+                <div className="onlineSection" style={{ position: 'absolute', top: onlineSectionPos }}>
+                    <div className='toHide' onClick={onlineCardsHide}></div>
                     <img src={logoImage} />
                     <div className="cards">
                         <a className='cursor-pointer' onClick={handleHost}>
@@ -113,4 +117,10 @@ export default function Lobby() {
             </div>
         </>
     )
+}
+else {
+    return(
+        <p>Loading...</p>
+    )
+}
 }

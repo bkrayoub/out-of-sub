@@ -1,0 +1,45 @@
+.findContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.findContainer table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30px 40px;
+    width: 60%;
+    height: 80%;
+    background-color: #DDAEF7;
+    box-shadow: 
+        inset 0px 8px 0px 0px #E9C3FF,
+        inset 0px -8px 0px 0px #CD7BFB; 
+    border-radius: 40px;
+}
+
+.findContainer>table thead,tr {
+    margin: 5px;
+    border: 3px solid #9046bb;
+    text-align: center;
+    width: 100%;
+    background-color: #E9C3FF;
+    display: flex;
+    justify-content: space-evenly;
+    transition: .3s ease-out;
+    border-radius: 10px;
+}
+.findContainer table thead {
+    border: 3px solid #E9C3FF;
+    background-color: #9046bb;
+}
+.findContainer table td,th {
+    cursor: pointer;
+    width: 25%;
+    padding: 10px;
+}
+.findContainer>table tr:hover {
+    background-color: #9664b3;
+}

@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Splashcreen from "./pages/Splashcreen";
 import Host from "./pages/Host";
 import Find from "./pages/Find";
+import NotFoundPage from "./pages/notFoundPage";
 import Join from "./pages/OnlineGame/Join";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
     {
         path: '/online-game/:code',
         element: <OnlineGame />
+    },
+    {
+        path: '/404',
+        element: <NotFoundPage />
     },
     {
         path: '*',

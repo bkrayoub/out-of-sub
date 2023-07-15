@@ -1,11 +1,8 @@
 import React from 'react';
+import { Navigate} from 'react-router-dom';
 
-function NotFound(props) {
-    return (
-        <div>
-            <h1>error - 404 page not found asa7bi</h1>
-        </div>
-    );
+function NotFound() {
+    return <Navigate to='/404'/>
 }
 
 export default NotFound;

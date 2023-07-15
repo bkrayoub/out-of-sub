@@ -72,6 +72,7 @@ export default function HostOffline() {
             return [...old, newPlayer];
         });
         setPlayersID(playersID + 1);
+        setAddPlayer('')
     };
     useEffect(() => {
         const localPlayers = localStorage.getItem("localPlayers");

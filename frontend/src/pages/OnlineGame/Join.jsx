@@ -9,7 +9,7 @@ import { useStateContext } from '../../contexts/ContextProvider';
 export default function Join() {
     const [code, setCode] = useState()
     const [passCode, setPassCode] = useState()
-    const [showPassInp, setShowPassInp] = useState(true);
+    const [showPassInp, setShowPassInp] = useState(false);
     const { user, token, setToken, setUser } = useStateContext();
 
     const navigate = useNavigate();

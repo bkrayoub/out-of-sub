@@ -23,7 +23,7 @@ export const ContextProvider = ({ children }) => {
                     headers: headers
                 });
                 if (data) {
-                    setUser((old)=>{return {...old, name:data.data.name, id: data.data.id, photo: data.data.photo   }});
+                    setUser((old)=>{return {...old, name:data.data.name, id: data.data.id, photo: data.data.photo, level: data.data.level   }});
                 }
             }
         }

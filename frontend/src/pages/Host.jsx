@@ -6,8 +6,13 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate, useParams } from 'react-router-dom';
 import { FirebaseService } from '../services/firebaseService';
 import { useStateContext } from '../contexts/ContextProvider';
+import {useNavigate } from 'react-router-dom';
 
 function Host() {
+
+
+    const navigate = useNavigate();
+
 
     /*-------------------------- Generate room code --------------------------*/
     const [room, setRoom] = useState({});
@@ -103,7 +108,7 @@ function Host() {
 
     return (
         <div className="container_ho_on">
-            <Link to='/lobby' style={{ "position": "absolute", "color": "white", "left": "50px", "top": "30px" }}><h1>Back</h1></Link>
+            <p onClick={()=>navigate(-1)} style={{ "position": "absolute", "color": "white", "left": "50px", "top": "30px" }}><h1>Back</h1></p>
             <div className="left">
                 <table>
                     <thead>
