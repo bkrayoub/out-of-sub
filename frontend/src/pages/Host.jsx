@@ -6,12 +6,10 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate, useParams, useNavigate } from 'react-router-dom';
 import { FirebaseService } from '../services/firebaseService';
 import { useStateContext } from '../contexts/ContextProvider';
-import {useNavigate } from 'react-router-dom';
 
 function Host() {
 
 
-    const navigate = useNavigate();
 
 
     /*-------------------------- Generate room code --------------------------*/

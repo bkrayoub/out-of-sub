@@ -25,9 +25,7 @@ export default function Find() {
     }, []);
 
     useEffect(() => {
-    useEffect(() => {
         console.log("rooms are : ", rooms);
-    }, [rooms])
     }, [rooms])
 
 
