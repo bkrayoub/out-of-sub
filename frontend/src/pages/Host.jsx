@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import '../style/host.css';
-import addImage from '../image/add.png';
-import startImage from '../image/start.png';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Routes, Link, Navigate, useParams, useNavigate } from 'react-router-dom';
 import { FirebaseService } from '../services/firebaseService';
 import { useStateContext } from '../contexts/ContextProvider';
+import '../style/host.css';
+import addImage from '../image/add.png';
+import startImage from '../image/start.png';
 
 function Host() {
 
@@ -36,10 +36,10 @@ function Host() {
     const code = params.code;
     const firebase = new FirebaseService();
 
-    useEffect(()=>{
-        if(room.started){
-
-            navigate("/game/"+ room.code);
+    useEffect(() => {
+        if (room.started) {
+            console.log(room.started)
+            navigate("/game/" + room.code);
         }
     }, [room])
 
@@ -47,7 +47,7 @@ function Host() {
         const gettingRoom = async () => {
             console.log("code is ", code);
             const getRoom = await firebase.getRoom(code);
-            console.log("rooooom",getRoom);
+            console.log("rooooom", getRoom);
             setRoom(getRoom);
         }
         gettingRoom();
@@ -104,7 +104,7 @@ function Host() {
         fetchSubcategies();
     }, []);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(room);
     }, [room])
 
@@ -112,17 +112,15 @@ function Host() {
         try {
             const response = await axios.get('http://127.0.0.1:8000/api/getSubjects/' + categories.id);
             setSubCategories(response.data);
-
-            console.log(response.data);
+            console.log(response.data);// subjects
         } catch (error) {
             console.error(subCategories);
         }
     };
 
-
     return (
         <div className="container_ho_on">
-            <p onClick={()=>navigate(-1)} style={{ "position": "absolute", "color": "white", "left": "50px", "top": "30px" }}><h1>Back</h1></p>
+            <p onClick={() => navigate(-1)} style={{ "position": "absolute", "color": "white", "left": "50px", "top": "30px", "cursor": "pointer", "font-size": "30px", }}><h1>Back</h1></p>
             <div className="left">
                 <table>
                     <thead>
@@ -132,15 +130,12 @@ function Host() {
                     </thead>
                     <tbody>
                         {players.map((player) => (
-                            <tr>
+                            <tr className={player.state === 'online' ? 'onlineState' : 'offlineState'}>
                                 <td className='flex items-center justify-center gap-2'>
-                                    <div className={'w-2 h-2 rounded-[50%] '
-                                        + (player.state === 'online' ? 'bg-[#0f0]' : 'bg-[#f00]')}
-                                    />
                                     <span>{count++}</span>
                                 </td>
                                 <td>{player.id === user.id ? "You" : player.name}</td>
-                                {(room && room.ownerID === user.id) ? <td className='deletePlayer'>delete</td> : ""}
+                                {(room && room.ownerID === user.id && player.id !== room.ownerID) ? <td className='deletePlayer'>Kick</td> : ""}
 
                             </tr>
                         ))}
@@ -151,42 +146,52 @@ function Host() {
                 <h1>Room Code: <spane>{code}</spane></h1>
                 <div className="hostoperation">
                     <div>
-                        <p>category</p>
-                        <select name="" id="" onChange={(e) => {
+                        <p>Category</p>
+                        {room.ownerID === user.id ?
+                        (<select onChange={(e) => {
                             setSelectedCategory(e.target.value);
                             console.log(e.target.value);
-                        }}>
+                            }}>
                             <option value={categories.name} selected>{categories.name}</option>
-                            <option value="">more categories are coming soon</option>
-                        </select>
-                    </div>
-                    <div>
-                        <p>obtrusives</p>
-                        <div className='flex justify-center gap-2'>
-                            <button className={"rounded-[5px] px-2 "
-                                + (numObt === 1 ? " bg-[#701ACD] " : " bg-[#9157cf] ")}
-                                onClick={() => setNumObt(1)}
-                            >1</button>
-                            <button className={" rounded-[5px] px-2 "
-                                + (numObt === 2 ? " bg-[#701ACD] " : " bg-[#9157cf] ")}
-                                onClick={() => setNumObt(2)}
-                            >2</button>
-                        </div>
-                    </div>
+                            <option disabled value="">more categories are coming soon</option>
+                        </select>)
+                        :
+                        (<select disabled onChange={(e) => {
+                            setSelectedCategory(e.target.value);
+                            console.log(e.target.value);
+                            }}>
+                            <option value={categories.name} selected>{categories.name}</option>
+                            <option disabled value="">more categories are coming soon</option>
+                        </select>)
+                        }
                 </div>
-                <div className="buttons">
-                    <img alt='' src={addImage} onClick={() => {
-                        setPlayers([]);
-                    }} />
-                    {room.ownerID === user.id ? <img alt='' src={startImage} className="button" onClick={() => {
-                        firebase.updateRoom(room.code, {started: true})
-                        setRoom((old)=>{
-                            return {...old, started: true}
-                        })
-                    }} /> : ''}
+                <div>
+                    <p>Obtrusives</p>
+                    <div className='flex justify-center gap-2'>
+                        <button className={"rounded-[5px] px-2 "
+                            + (numObt === 1 ? " bg-[#701ACD] " : " bg-[#9157cf] ")}
+                            onClick={() => setNumObt(1)}
+                        >1</button>
+                        <button className={" rounded-[5px] px-2 "
+                            + (numObt === 2 ? " bg-[#701ACD] " : " bg-[#9157cf] ")}
+                            onClick={() => setNumObt(2)}
+                        >2</button>
+                    </div>
                 </div>
             </div>
+            <div className="buttons">
+                {/* <img alt='' src={addImage} onClick={() => {
+                        setPlayers([]);
+                    }} /> */}
+                {room.ownerID === user.id ? <img alt='' src={startImage} className="button" onClick={() => {
+                    firebase.updateRoom(room.code, { started: true, category: categories.name, obtrusiveCount: numObt})
+                    setRoom((old) => {
+                        return { ...old, started: true }
+                    })
+                }} /> : ''}
+            </div>
         </div>
+        </div >
     );
 }
 

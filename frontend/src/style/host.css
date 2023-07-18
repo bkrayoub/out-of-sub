@@ -100,9 +100,28 @@ body {
     -webkit-box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
     -moz-box-shadow: 0px 0px 36px -7px rgba(255, 207, 248, 0.8);
 }
-
+.onlineState::before {
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 100%;
+    align-self: center;
+    left: 10%;
+}
+.offlineState::before {
+    align-self: center;
+    border-radius: 100%;
+    position: absolute;
+    content: '';
+    width: 10px;
+    height: 10px;
+    left: 10%;
+    background-color: red;
+}
 .container_ho_on .left table {
-    padding: 50px 20px;
+    padding: 20px 20px;
     /* background-image: url(../image/playersTable.png); */
     background-repeat: no-repeat;
     background-size: contain;
@@ -111,36 +130,34 @@ body {
         inset 0px 11px 0px 0px #E9C3FF,
         inset 0px -11px 0px 0px #CD7BFB; 
     border-radius: 40px;
-    width: 330px;
-    height: 448px;
+    width: 400px;
+    height: fit-content;
     text-align: center;
     position: relative;
+    display: flex;
+    flex-direction: column;
     z-index: 99;
 }
 
-.container_ho_on .left table thead {
-    margin-bottom: 10px;
+
+.container_ho_on .left table thead, .container_ho_on .left table tbody tr {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-row-gap: 10px;
 }
 
-.container_ho_on .left table tbody tr {
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+.container_ho_on .left table th,td {
+    width: 100%;
+    height: 100%;
 }
-
 .container_ho_on .left table tbody {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(10, 1fr);
     grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-row-gap: 10px;
 }
 
 .container_ho_on .deletePlayer {
@@ -171,12 +188,29 @@ body {
     text-align: center;
     position: relative;
 }
+
+.container_ho_on select:focus {
+    border-radius: 15px 15px 0px 0px ;
+    border-bottom: 0px;
+    transition: 0s;
+}
+.container_ho_on select *{
+    background-color: #fff;
+    border-radius: 0px 0px 15px 15px;
+    transition: .33s ease-out;
+}
 .container_ho_on select {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
     height: 30px;
-    border-radius: 100px;
+    border-radius: 15px;
     border: 2px solid #4C00AC;
     text-align: center;
+    transition: .33s ease-out;
 }
+
 
 .container_ho_on .buttons {
     width: 100%;

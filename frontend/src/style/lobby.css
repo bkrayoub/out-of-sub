@@ -197,9 +197,11 @@ body{
     width: 270px;
     height: 370px;
     display: flex;
-    background-image: url(../image/online-card.png);
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-color: #DDAEF7;
+    box-shadow: 
+        inset 0px 8px 0px 0px #E9C3FF,
+        inset 0px -8px 0px 0px #CD7BFB; 
+    border-radius: 40px;
     flex-direction: column;
     align-items: center;
     transition: .3s;

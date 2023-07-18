@@ -23,7 +23,9 @@ export class FirebaseService {
             code: roomCode,
             password: password,
             ownerID: player.id,
-            started: false
+            started: false,
+            obtrusiveCount: 1,
+            category: null,
         }).then((res) => {
             return "added"
         }).catch((err) => {

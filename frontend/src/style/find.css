@@ -20,7 +20,7 @@
     border-radius: 40px;
 }
 
-.findContainer>table thead,tr {
+.findContainer>table thead,.findContainer>table tr {
     margin: 5px;
     border: 3px solid #9046bb;
     text-align: center;
